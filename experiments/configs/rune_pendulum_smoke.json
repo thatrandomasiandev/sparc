@@ -1,0 +1,22 @@
+{
+  "method": "rune",
+  "env_id": "Pendulum-v1",
+  "seed": 42,
+  "num_train_steps": 3000,
+  "num_seed_steps": 200,
+  "num_unsup_steps": 500,
+  "num_interact": 300,
+  "max_feedback": 40,
+  "eval_frequency": 1500,
+  "num_eval_episodes": 2,
+  "segment_length": 8,
+  "ensemble_size": 3,
+  "reward_batch": 16,
+  "reward_update": 20,
+  "feed_type": 1,
+  "large_batch": 4,
+  "learning_starts": 100,
+  "buffer_size": 5000,
+  "rune_beta": 0.05,
+  "log_path": null
+}

@@ -1,0 +1,21 @@
+{
+  "seed": 0,
+  "env_id": "walker-walk",
+  "regime": "stress",
+  "auto_stress_schedule": true,
+  "train_policy": true,
+  "eval_every_windows": 1,
+  "num_eval_episodes": 10,
+  "train_epochs_per_window": 5,
+  "policy_learning_starts": 1000,
+  "share_operator_latents": true,
+  "reward": {
+    "embed_dim": 64,
+    "latent_dim": 16,
+    "hidden_dim": 128,
+    "ensemble_size": 3,
+    "num_operators": 3
+  },
+  "bounding_mode": "shrink",
+  "log_path": null
+}

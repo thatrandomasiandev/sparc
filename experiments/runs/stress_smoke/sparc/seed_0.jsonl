@@ -1,0 +1,35 @@
+{"ts": "2026-08-25T23:00:57.180897+00:00", "event": "train_start", "config": {"seed": 0, "num_windows": 3, "env_steps_per_window": 2000, "state_dim": 24, "action_dim": 6, "horizon": 50, "train_epochs_per_window": 1, "regime": "stress", "train_steps_total": 500000, "log_path": "experiments/runs/stress_smoke/sparc/seed_0.jsonl", "env_id": "walker-walk", "operator_id": 1, "num_operators": 3, "reward": {"embed_dim": 32, "latent_dim": 8, "hidden_dim": 64, "num_operators": 3, "ensemble_size": 3, "sigma_z": 1.0, "map_steps": 100, "map_lr": 0.05, "train_lr": 0.0003}, "query": {"batch_size": 4, "lambda_div": 0.1, "eta_similarity": 0.5, "newton_prior_sigma": 1.0, "wall_clock_budget_sec": 2.0, "max_candidates": 500}, "bounding_mode": "shrink", "eval_every_windows": 1, "num_eval_episodes": 2, "train_policy": true, "policy_steps_per_window": 500, "policy_batch_size": 256, "policy_learning_starts": 100, "max_queries": 12, "auto_stress_schedule": false}}
+{"ts": "2026-08-25T23:00:58.001305+00:00", "event": "window_open", "window_id": 0, "operator_id": 1, "num_queries": 4, "select_sec": 0.5234996250073891, "env_step": 0}
+{"ts": "2026-08-25T23:00:58.001454+00:00", "event": "label_received", "window_id": 0, "operator_id": 1, "label": 0, "env_step": 0}
+{"ts": "2026-08-25T23:00:58.001500+00:00", "event": "label_received", "window_id": 0, "operator_id": 1, "label": 1, "env_step": 0}
+{"ts": "2026-08-25T23:00:58.001535+00:00", "event": "label_received", "window_id": 0, "operator_id": 1, "label": 0, "env_step": 0}
+{"ts": "2026-08-25T23:00:58.001568+00:00", "event": "label_received", "window_id": 0, "operator_id": 1, "label": 0, "env_step": 0}
+{"ts": "2026-08-25T23:00:58.035548+00:00", "event": "reward_train", "window_id": 0, "loss": 0.6928187012672424, "dataset_size": 4}
+{"ts": "2026-08-25T23:00:58.111649+00:00", "event": "gate_update", "window_id": 0, "q90": 0.004105119034647942, "tau": 0.014105119034647942}
+{"ts": "2026-08-25T23:00:58.111887+00:00", "event": "bounding_applied", "window_id": 0, "r_hat": -0.00197234726510942, "disagreement": 0.0037537820171564817, "action": "APPLY", "reward_out": -0.00197234726510942}
+{"ts": "2026-08-25T23:00:58.111906+00:00", "event": "window_close", "window_id": 0, "env_step": 2000}
+{"ts": "2026-08-25T23:00:59.874971+00:00", "event": "policy_train", "window_id": 0, "steps": 500}
+{"ts": "2026-08-25T23:01:00.490112+00:00", "event": "eval", "env_steps": 2000, "mean_return": -0.0534218861750162, "mean_true_return": 16.510082715152347, "total_queries": 4, "success_rate": null}
+{"ts": "2026-08-25T23:01:01.319422+00:00", "event": "window_open", "window_id": 1, "operator_id": 2, "num_queries": 4, "select_sec": 0.5274040420044912, "env_step": 2000}
+{"ts": "2026-08-25T23:01:01.319532+00:00", "event": "label_received", "window_id": 1, "operator_id": 2, "label": 0, "env_step": 2000}
+{"ts": "2026-08-25T23:01:01.319574+00:00", "event": "label_received", "window_id": 1, "operator_id": 2, "label": 0, "env_step": 2000}
+{"ts": "2026-08-25T23:01:01.319604+00:00", "event": "label_received", "window_id": 1, "operator_id": 2, "label": 0, "env_step": 2000}
+{"ts": "2026-08-25T23:01:01.319634+00:00", "event": "label_received", "window_id": 1, "operator_id": 2, "label": 0, "env_step": 2000}
+{"ts": "2026-08-25T23:01:01.353499+00:00", "event": "reward_train", "window_id": 1, "loss": 0.6897944808006287, "dataset_size": 8}
+{"ts": "2026-08-25T23:01:01.429023+00:00", "event": "gate_update", "window_id": 1, "q90": 0.003301996272057295, "tau": 0.013301996272057295}
+{"ts": "2026-08-25T23:01:01.429249+00:00", "event": "bounding_applied", "window_id": 1, "r_hat": -0.001836070790886879, "disagreement": 0.0009405729360878468, "action": "APPLY", "reward_out": -0.001836070790886879}
+{"ts": "2026-08-25T23:01:01.429266+00:00", "event": "window_close", "window_id": 1, "env_step": 4000}
+{"ts": "2026-08-25T23:01:04.206751+00:00", "event": "policy_train", "window_id": 1, "steps": 500}
+{"ts": "2026-08-25T23:01:04.885735+00:00", "event": "eval", "env_steps": 4000, "mean_return": -0.32132891008097886, "mean_true_return": 17.175850321834066, "total_queries": 8, "success_rate": null}
+{"ts": "2026-08-25T23:01:05.681548+00:00", "event": "window_open", "window_id": 2, "operator_id": 3, "num_queries": 4, "select_sec": 0.5077690420002909, "env_step": 4000}
+{"ts": "2026-08-25T23:01:05.681657+00:00", "event": "label_received", "window_id": 2, "operator_id": 3, "label": 1, "env_step": 4000}
+{"ts": "2026-08-25T23:01:05.681699+00:00", "event": "label_received", "window_id": 2, "operator_id": 3, "label": 1, "env_step": 4000}
+{"ts": "2026-08-25T23:01:05.681731+00:00", "event": "label_received", "window_id": 2, "operator_id": 3, "label": 1, "env_step": 4000}
+{"ts": "2026-08-25T23:01:05.681760+00:00", "event": "label_received", "window_id": 2, "operator_id": 3, "label": 1, "env_step": 4000}
+{"ts": "2026-08-25T23:01:05.731826+00:00", "event": "reward_train", "window_id": 2, "loss": 0.6848047574361166, "dataset_size": 12}
+{"ts": "2026-08-25T23:01:05.811066+00:00", "event": "gate_update", "window_id": 2, "q90": 0.004294293001294136, "tau": 0.014294293001294136}
+{"ts": "2026-08-25T23:01:05.811290+00:00", "event": "bounding_applied", "window_id": 2, "r_hat": 0.009133393876254559, "disagreement": 0.001860842457972467, "action": "APPLY", "reward_out": 0.009133393876254559}
+{"ts": "2026-08-25T23:01:05.811306+00:00", "event": "window_close", "window_id": 2, "env_step": 6000}
+{"ts": "2026-08-25T23:01:07.731203+00:00", "event": "policy_train", "window_id": 2, "steps": 500}
+{"ts": "2026-08-25T23:01:08.343922+00:00", "event": "eval", "env_steps": 6000, "mean_return": -0.6645634335458421, "mean_true_return": 18.929835022771293, "total_queries": 12, "success_rate": null}
+{"ts": "2026-08-25T23:01:08.343982+00:00", "event": "train_end", "windows_completed": 3, "total_queries": 12, "drift_triggers": 0, "wall_clock_sec": 11.16340541599493}

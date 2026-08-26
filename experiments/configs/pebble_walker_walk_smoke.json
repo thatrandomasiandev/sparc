@@ -1,0 +1,22 @@
+{
+  "method": "pebble",
+  "env_id": "walker-walk",
+  "seed": 42,
+  "num_train_steps": 4000,
+  "num_seed_steps": 500,
+  "num_unsup_steps": 1000,
+  "num_interact": 800,
+  "max_feedback": 32,
+  "eval_frequency": 2000,
+  "num_eval_episodes": 2,
+  "segment_length": 50,
+  "ensemble_size": 3,
+  "reward_batch": 16,
+  "reward_update": 20,
+  "feed_type": 1,
+  "large_batch": 4,
+  "learning_starts": 200,
+  "buffer_size": 10000,
+  "batch_size": 64,
+  "log_path": null
+}

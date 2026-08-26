@@ -1,0 +1,13 @@
+{
+  "suite_name": "week19_pendulum_ci",
+  "env_id": "Pendulum-v1",
+  "seeds": [0],
+  "reference_method": "pebble",
+  "proposed_method": "sparc",
+  "methods": {
+    "pebble": "experiments/configs/pebble_pendulum_smoke.json",
+    "prefppo": "experiments/configs/prefppo_pendulum_smoke.json",
+    "rune": "experiments/configs/rune_pendulum_smoke.json",
+    "sparc": "experiments/configs/sparc_pendulum_smoke.json"
+  }
+}

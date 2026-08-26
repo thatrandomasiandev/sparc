@@ -1,0 +1,20 @@
+{
+  "method": "aprel",
+  "seed": 0,
+  "env_id": "walker-walk",
+  "total_queries": 16,
+  "total_env_steps": 6000,
+  "wall_clock_sec": 74.56494320799538,
+  "asymptotic_return": -32.54643831541797,
+  "asymptotic_true_return": 20.28067063738434,
+  "final_train_acc": 0.9453125,
+  "eval_history": [
+    {
+      "env_steps": 6000,
+      "mean_return": -32.54643831541797,
+      "mean_true_return": 20.28067063738434,
+      "total_queries": 16,
+      "success_rate": null
+    }
+  ]
+}

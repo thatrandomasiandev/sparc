@@ -1,0 +1,55 @@
+{
+  "method": "sparc",
+  "env_id": "walker-walk",
+  "seeds": [
+    0
+  ],
+  "total_wall_clock_sec": 12.173413000011351,
+  "summary": {
+    "n_seeds": 1,
+    "mean_asymptotic_return": -0.3464380766006124,
+    "std_asymptotic_return": 0.0,
+    "ci95_low": -0.3464380766006124,
+    "ci95_high": -0.3464380766006124,
+    "mean_asymptotic_true_return": 17.53858935325257,
+    "mean_total_queries": 12.0,
+    "std_total_queries": 0.0,
+    "mean_wall_clock_sec": 11.16340541599493
+  },
+  "runs": [
+    {
+      "method": "sparc",
+      "seed": 0,
+      "env_id": "walker-walk",
+      "total_queries": 12,
+      "total_env_steps": 6000,
+      "wall_clock_sec": 11.16340541599493,
+      "asymptotic_return": -0.3464380766006124,
+      "asymptotic_true_return": 17.53858935325257,
+      "final_train_acc": 0.3151952425638834,
+      "eval_history": [
+        {
+          "env_steps": 2000,
+          "mean_return": -0.0534218861750162,
+          "mean_true_return": 16.510082715152347,
+          "total_queries": 4,
+          "success_rate": null
+        },
+        {
+          "env_steps": 4000,
+          "mean_return": -0.32132891008097886,
+          "mean_true_return": 17.175850321834066,
+          "total_queries": 8,
+          "success_rate": null
+        },
+        {
+          "env_steps": 6000,
+          "mean_return": -0.6645634335458421,
+          "mean_true_return": 18.929835022771293,
+          "total_queries": 12,
+          "success_rate": null
+        }
+      ]
+    }
+  ]
+}

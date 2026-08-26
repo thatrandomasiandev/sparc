@@ -1,0 +1,29 @@
+{
+  "seed": 0,
+  "env_id": "walker-walk",
+  "regime": "stress",
+  "auto_stress_schedule": false,
+  "num_windows": 3,
+  "env_steps_per_window": 2000,
+  "train_steps_total": 6000,
+  "horizon": 50,
+  "max_queries": 12,
+  "train_policy": true,
+  "eval_every_windows": 1,
+  "num_eval_episodes": 2,
+  "train_epochs_per_window": 1,
+  "policy_steps_per_window": 500,
+  "policy_learning_starts": 100,
+  "reward": {
+    "embed_dim": 32,
+    "latent_dim": 8,
+    "hidden_dim": 64,
+    "ensemble_size": 3,
+    "num_operators": 3
+  },
+  "query": {
+    "batch_size": 4
+  },
+  "bounding_mode": "shrink",
+  "log_path": null
+}

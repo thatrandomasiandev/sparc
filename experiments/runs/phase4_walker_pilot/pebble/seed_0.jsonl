@@ -1,0 +1,40 @@
+{"ts": "2026-08-25T23:49:39.392088+00:00", "event": "baseline_start", "method": "pebble", "config": {"method": "pebble", "env_id": "walker-walk", "seed": 0, "num_train_steps": 500000, "num_seed_steps": 1000, "num_unsup_steps": 5000, "num_interact": 5000, "max_feedback": 1000, "eval_frequency": 10000, "num_eval_episodes": 10, "log_path": "experiments/runs/phase4_walker_pilot/pebble/seed_0.jsonl", "segment_length": 50, "ensemble_size": 3, "reward_lr": 0.0003, "reward_batch": 128, "reward_update": 200, "feed_type": 1, "large_batch": 10, "activation": "tanh", "label_margin": 0.0, "use_oracle_labels": true, "teacher_gamma": 1.0, "teacher_eps_mistake": 0.0, "teacher_eps_skip": 0.0, "teacher_eps_equal": 0.0, "policy_lr": 0.0003, "batch_size": 256, "buffer_size": 500000, "learning_starts": 1000, "train_freq": 1, "gradient_steps": 1, "gamma": 0.99, "rune_beta": 0.05, "surf_threshold": 0.95, "surf_noise_std": 0.1, "surf_unlabeled_batch": 128, "surf_pseudo_weight": 1.0}}
+{"ts": "2026-08-25T23:49:44.248263+00:00", "event": "eval", "env_steps": 1128, "mean_return": -10.42550218586496, "mean_true_return": 18.170859344218847, "total_queries": 0, "success_rate": null}
+{"ts": "2026-08-25T23:50:22.162182+00:00", "event": "reward_update", "step": 6120, "acc": 0.8473307291666666, "first": true}
+{"ts": "2026-08-25T23:50:22.826734+00:00", "event": "replay_relabel", "step": 6120, "transitions": 5120}
+{"ts": "2026-08-25T23:50:54.406290+00:00", "event": "eval", "env_steps": 10088, "mean_return": 184.87136811427777, "mean_true_return": 38.73568460670729, "total_queries": 128, "success_rate": null}
+{"ts": "2026-08-25T23:50:54.406451+00:00", "event": "train_progress", "step": 10088, "total_feedback": 128, "wall_clock_sec": 73.77711029100465}
+{"ts": "2026-08-25T23:51:06.172747+00:00", "event": "reward_update", "step": 11240, "acc": 0.8745535714285714, "total_feedback": 256}
+{"ts": "2026-08-25T23:51:07.425328+00:00", "event": "replay_relabel", "step": 11240, "transitions": 10240}
+{"ts": "2026-08-25T23:51:52.441384+00:00", "event": "reward_update", "step": 16360, "acc": 0.896484375, "total_feedback": 384}
+{"ts": "2026-08-25T23:51:54.317276+00:00", "event": "replay_relabel", "step": 16360, "transitions": 15360}
+{"ts": "2026-08-25T23:52:41.658356+00:00", "event": "eval", "env_steps": 20072, "mean_return": 400.4047847754024, "mean_true_return": 37.35722390372821, "total_queries": 384, "success_rate": null}
+{"ts": "2026-08-25T23:52:41.658601+00:00", "event": "train_progress", "step": 20072, "total_feedback": 384, "wall_clock_sec": 181.0271529580059}
+{"ts": "2026-08-25T23:53:05.803975+00:00", "event": "reward_update", "step": 21480, "acc": 0.9114200367647058, "total_feedback": 512}
+{"ts": "2026-08-25T23:53:08.290569+00:00", "event": "replay_relabel", "step": 21480, "transitions": 20480}
+{"ts": "2026-08-25T23:53:53.495378+00:00", "event": "reward_update", "step": 26600, "acc": 0.9161706349206349, "total_feedback": 640}
+{"ts": "2026-08-25T23:53:56.564450+00:00", "event": "replay_relabel", "step": 26600, "transitions": 25600}
+{"ts": "2026-08-25T23:54:21.692840+00:00", "event": "eval", "env_steps": 30056, "mean_return": 521.8898428666246, "mean_true_return": 54.75597054306195, "total_queries": 640, "success_rate": null}
+{"ts": "2026-08-25T23:54:21.693090+00:00", "event": "train_progress", "step": 30056, "total_feedback": 640, "wall_clock_sec": 281.0596764580114}
+{"ts": "2026-08-25T23:54:37.554094+00:00", "event": "reward_update", "step": 31720, "acc": 0.9142857142857143, "total_feedback": 768}
+{"ts": "2026-08-25T23:54:41.342843+00:00", "event": "replay_relabel", "step": 31720, "transitions": 30720}
+{"ts": "2026-08-25T23:55:26.746693+00:00", "event": "reward_update", "step": 36840, "acc": 0.9112535112359551, "total_feedback": 896}
+{"ts": "2026-08-25T23:55:31.100237+00:00", "event": "replay_relabel", "step": 36840, "transitions": 35840}
+{"ts": "2026-08-25T23:55:57.257204+00:00", "event": "eval", "env_steps": 40040, "mean_return": 419.14507681964903, "mean_true_return": 161.10566870539301, "total_queries": 896, "success_rate": null}
+{"ts": "2026-08-25T23:55:57.257616+00:00", "event": "train_progress", "step": 40040, "total_feedback": 896, "wall_clock_sec": 376.6223245410074}
+{"ts": "2026-08-25T23:56:13.294413+00:00", "event": "reward_update", "step": 41960, "acc": 0.9119988207547169, "total_feedback": 1024}
+{"ts": "2026-08-25T23:56:18.214153+00:00", "event": "replay_relabel", "step": 41960, "transitions": 40960}
+{"ts": "2026-08-25T23:57:13.697351+00:00", "event": "eval", "env_steps": 50024, "mean_return": 224.48362141258562, "mean_true_return": 121.54399543840991, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-25T23:57:13.697756+00:00", "event": "train_progress", "step": 50024, "total_feedback": 1024, "wall_clock_sec": 453.0609626660007}
+{"ts": "2026-08-25T23:58:17.818745+00:00", "event": "eval", "env_steps": 60008, "mean_return": 404.96319017276977, "mean_true_return": 160.9891769983272, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-25T23:58:17.819138+00:00", "event": "train_progress", "step": 60008, "total_feedback": 1024, "wall_clock_sec": 517.1810847500019}
+{"ts": "2026-08-25T23:59:24.779292+00:00", "event": "eval", "env_steps": 70120, "mean_return": 731.477770605757, "mean_true_return": 377.71921538913267, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-25T23:59:24.779709+00:00", "event": "train_progress", "step": 70120, "total_feedback": 1024, "wall_clock_sec": 584.1403398750117}
+{"ts": "2026-08-26T00:00:34.957109+00:00", "event": "eval", "env_steps": 80104, "mean_return": 657.5470518933921, "mean_true_return": 310.05661616568995, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-26T00:00:34.957536+00:00", "event": "train_progress", "step": 80104, "total_feedback": 1024, "wall_clock_sec": 654.3167880410037}
+{"ts": "2026-08-26T00:02:03.894897+00:00", "event": "eval", "env_steps": 90088, "mean_return": 745.550459710072, "mean_true_return": 382.98617321204244, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-26T00:02:03.895289+00:00", "event": "train_progress", "step": 90088, "total_feedback": 1024, "wall_clock_sec": 743.2527936250117}
+{"ts": "2026-08-26T00:03:29.490908+00:00", "event": "eval", "env_steps": 100072, "mean_return": 819.5404924145921, "mean_true_return": 398.0379041827948, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-26T00:03:29.491336+00:00", "event": "train_progress", "step": 100072, "total_feedback": 1024, "wall_clock_sec": 828.8471581250051}
+{"ts": "2026-08-26T00:04:39.592201+00:00", "event": "eval", "env_steps": 110056, "mean_return": 860.8119188367991, "mean_true_return": 415.19139520376086, "total_queries": 1024, "success_rate": null}
+{"ts": "2026-08-26T00:04:39.592574+00:00", "event": "train_progress", "step": 110056, "total_feedback": 1024, "wall_clock_sec": 898.9470194160094}

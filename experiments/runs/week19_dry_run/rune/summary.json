@@ -1,0 +1,62 @@
+{
+  "method": "rune",
+  "env_id": "walker-walk",
+  "seeds": [
+    0,
+    1
+  ],
+  "total_wall_clock_sec": 154.12829075001355,
+  "summary": {
+    "n_seeds": 2,
+    "mean_asymptotic_return": -23.96471281719757,
+    "std_asymptotic_return": 9.596529102357817,
+    "ci95_low": -110.18610594899285,
+    "ci95_high": 62.256680314597716,
+    "mean_asymptotic_true_return": 20.84185944105228,
+    "mean_total_queries": 16.0,
+    "std_total_queries": 0.0,
+    "mean_wall_clock_sec": 77.0232121040026
+  },
+  "runs": [
+    {
+      "method": "rune",
+      "seed": 0,
+      "env_id": "walker-walk",
+      "total_queries": 16,
+      "total_env_steps": 6000,
+      "wall_clock_sec": 71.86634849999973,
+      "asymptotic_return": -30.750483621328833,
+      "asymptotic_true_return": 22.269853083194548,
+      "final_train_acc": 0.9583333333333334,
+      "eval_history": [
+        {
+          "env_steps": 6000,
+          "mean_return": -30.750483621328833,
+          "mean_true_return": 22.269853083194548,
+          "total_queries": 16,
+          "success_rate": null
+        }
+      ]
+    },
+    {
+      "method": "rune",
+      "seed": 1,
+      "env_id": "walker-walk",
+      "total_queries": 16,
+      "total_env_steps": 6000,
+      "wall_clock_sec": 82.18007570800546,
+      "asymptotic_return": -17.178942013066305,
+      "asymptotic_true_return": 19.413865798910013,
+      "final_train_acc": 0.8958333333333334,
+      "eval_history": [
+        {
+          "env_steps": 6000,
+          "mean_return": -17.178942013066305,
+          "mean_true_return": 19.413865798910013,
+          "total_queries": 16,
+          "success_rate": null
+        }
+      ]
+    }
+  ]
+}

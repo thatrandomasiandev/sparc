@@ -1,0 +1,20 @@
+{
+  "method": "pebble",
+  "seed": 1,
+  "env_id": "walker-walk",
+  "total_queries": 16,
+  "total_env_steps": 6000,
+  "wall_clock_sec": 47.12094891699962,
+  "asymptotic_return": -11.410699786152694,
+  "asymptotic_true_return": 22.99959948018823,
+  "final_train_acc": 0.875,
+  "eval_history": [
+    {
+      "env_steps": 6000,
+      "mean_return": -11.410699786152694,
+      "mean_true_return": 22.99959948018823,
+      "total_queries": 16,
+      "success_rate": null
+    }
+  ]
+}

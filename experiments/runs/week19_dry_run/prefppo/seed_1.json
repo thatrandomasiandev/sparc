@@ -1,0 +1,12 @@
+{
+  "method": "prefppo",
+  "seed": 1,
+  "env_id": "walker-walk",
+  "total_queries": 16,
+  "total_env_steps": 6088,
+  "wall_clock_sec": 3.2626481670013163,
+  "asymptotic_return": 0.0,
+  "asymptotic_true_return": 0.0,
+  "final_train_acc": 0.890625,
+  "eval_history": []
+}

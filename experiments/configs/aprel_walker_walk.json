@@ -1,0 +1,21 @@
+{
+  "method": "aprel",
+  "env_id": "walker-walk",
+  "seed": 0,
+  "num_train_steps": 500000,
+  "num_seed_steps": 1000,
+  "num_unsup_steps": 5000,
+  "num_interact": 5000,
+  "max_feedback": 1000,
+  "eval_frequency": 10000,
+  "num_eval_episodes": 10,
+  "segment_length": 50,
+  "ensemble_size": 3,
+  "reward_batch": 128,
+  "reward_update": 200,
+  "feed_type": 2,
+  "large_batch": 10,
+  "learning_starts": 1000,
+  "buffer_size": 500000,
+  "log_path": null
+}

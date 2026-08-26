@@ -1,0 +1,62 @@
+{
+  "method": "surf",
+  "env_id": "walker-walk",
+  "seeds": [
+    0,
+    1
+  ],
+  "total_wall_clock_sec": 98.74717870799941,
+  "summary": {
+    "n_seeds": 2,
+    "mean_asymptotic_return": 5.203429613572695,
+    "std_asymptotic_return": 107.44401603003986,
+    "ci95_low": -960.1427540924583,
+    "ci95_high": 970.5496133196036,
+    "mean_asymptotic_true_return": 20.622264261351877,
+    "mean_total_queries": 16.0,
+    "std_total_queries": 0.0,
+    "mean_wall_clock_sec": 49.343976041498536
+  },
+  "runs": [
+    {
+      "method": "surf",
+      "seed": 0,
+      "env_id": "walker-walk",
+      "total_queries": 16,
+      "total_env_steps": 6000,
+      "wall_clock_sec": 46.322809999997844,
+      "asymptotic_return": 81.17782194633,
+      "asymptotic_true_return": 18.81456717591136,
+      "final_train_acc": 0.97265625,
+      "eval_history": [
+        {
+          "env_steps": 6000,
+          "mean_return": 81.17782194633,
+          "mean_true_return": 18.81456717591136,
+          "total_queries": 16,
+          "success_rate": null
+        }
+      ]
+    },
+    {
+      "method": "surf",
+      "seed": 1,
+      "env_id": "walker-walk",
+      "total_queries": 16,
+      "total_env_steps": 6000,
+      "wall_clock_sec": 52.36514208299923,
+      "asymptotic_return": -70.77096271918461,
+      "asymptotic_true_return": 22.429961346792393,
+      "final_train_acc": 0.9375,
+      "eval_history": [
+        {
+          "env_steps": 6000,
+          "mean_return": -70.77096271918461,
+          "mean_true_return": 22.429961346792393,
+          "total_queries": 16,
+          "success_rate": null
+        }
+      ]
+    }
+  ]
+}
