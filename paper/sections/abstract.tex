@@ -1,0 +1,24 @@
+Robots that learn from human preference comparisons ask people which short
+behaviors look better in order to infer a reward function. Much of the
+uncertainty about that reward never changes what the robot should actually do,
+so limited human patience is spent resolving differences with no behavioral
+consequence.
+% C-mot-1/2: require E-eq / E-eq-d before stating as measured fact in final draft.
+The missing piece is a practical way to choose trajectory comparisons for the
+information that reduces policy regret, using a prior fit to previous users
+rather than searching all of reward space.
+% C-mech-2: require E-prior before ``population prior makes \ldots usable'' stays.
+We select comparisons by expected reduction in policy regret under a
+population prior and evaluate query-selection strategies on a tabular
+gridworld with exact optimal policies and exact regret, using simulated users
+drawn from a mixture preference population.
+% Empirics below: only Claim IDs that are ``supported'' in docs/CLAIMS.md.
+A preliminary study finds a large gap between regret-based (and BALD) acquisition
+and a true-regret oracle, indicating substantial headroom beyond one-step VOI
+variants we tried (particle loss, lookahead).
+% C-main-3 supported (E3-ablate). C-main-1/2: do not claim VOI$\ll$BALD until E3-power.
+Whether regret-based selection reliably beats parameter-uncertainty acquisition
+is reserved for a powered paired evaluation (see Experiments).
+These results motivate shifting preference elicitation toward what changes robot
+behavior, while insisting that every reported number trace to a named experiment.
+% Cite Regan \& Boutilier 2009 and Model-Free Preference Elicitation (IJCAI 2024) in the intro.

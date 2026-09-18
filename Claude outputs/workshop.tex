@@ -1,0 +1,291 @@
+% CoRL 2026 Workshop on Human-Centered Robot Learning and Interaction
+% Extended abstract, 4 pages excluding references. Non-archival, single-blind.
+%
+% TODO before submitting:
+%   1. Fill in the surname on line \author{}.
+%   2. Decide with your advisor whether he is a co-author on this.
+%   3. Check the workshop's OpenReview page for a required style file; if one
+%      exists, move this content into it rather than using article class.
+
+\documentclass[10pt]{article}
+
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[round]{natbib}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\usepackage{titlesec}
+\usepackage{caption}
+
+\captionsetup{font=small,labelfont=bf,skip=6pt}
+\titlespacing*{\section}{0pt}{10pt}{4pt}
+\titlespacing*{\subsection}{0pt}{8pt}{3pt}
+\setlength{\parskip}{2pt}
+
+\title{\vspace{-2.2em}Decision-Relevant Preference Elicitation\\
+under a Population Prior}
+
+\author{Joshua [SURNAME]\\
+\small University of Southern California\\
+\small \texttt{jjt\_373@usc.edu}}
+
+\date{}
+
+\begin{document}
+\maketitle
+\vspace{-2.2em}
+
+\begin{abstract}
+\noindent
+Active preference-based reward learning selects the comparison that reveals the
+most about a user's reward function. We argue this is the wrong target: much of
+what a reward function encodes never changes what the robot does, so the robot
+spends a person's limited patience resolving uncertainty with no behavioral
+consequence. We select queries instead by expected reduction in policy regret,
+computed under a prior learned from a population of previous users. In an MDP
+where optimal policies and true regret are exact, decision-relevant selection
+reaches lower regret than information-gain selection after ten queries
+($2.37 \pm 0.26$ vs.\ $3.39 \pm 0.33$, $n{=}150$), and the paired advantage in
+queries-to-threshold is $0.63$ queries, 95\% CI $[0.02, 1.25]$ --- positive but
+fragile. We also report two negative results and one retraction. The idea is
+not new; regret-based reward elicitation dates to 2009. What is new is the
+instantiation with human trajectory comparisons and a learned population prior,
+and we are explicit about how thin the current evidence for it is.
+\end{abstract}
+
+\section{Introduction}
+
+A robot can learn what a person wants by showing them pairs of behaviors and
+asking which is better. The bottleneck is the person: physical robots cannot
+afford the thousands of comparisons a simulated agent can~\citep{sadigh2017}.
+Nearly all work on this bottleneck asks the same question --- which comparison
+is most \emph{informative about the reward function}~\citep{biyik2018,biyik2019,
+biyik2024,hejna2022}.
+
+We think that target is misspecified. A reward function's purpose is to induce a
+policy, and the map from rewards to policies is heavily many-to-one. Two reward
+estimates that differ substantially often produce identical behavior. Every
+query spent separating them buys nothing the robot will ever act on.
+
+The alternative is to select queries by how much the answer changes what the
+robot would \emph{do}. This is not a new idea. \citet{regan2009} posed exactly
+this problem for MDPs seventeen years ago, minimizing the precision with which a
+reward must be specified while still producing near-optimal policies, and
+selecting queries by minimax regret reduction. What has not been done is the
+instantiation that matters for robot learning: human trajectory-segment
+comparisons rather than bound queries on reward values, and a \emph{prior
+learned from previous users} rather than an uninformative prior over all of
+reward space. The population prior is what makes the approach affordable ---
+we search only the region real users occupy.
+
+\textbf{Contributions.} (i) A value-of-information acquisition function over
+trajectory comparisons that scores queries by expected reduction in policy
+regret under a population prior. (ii) An evaluation in an MDP where optimal
+policies and regret are computed exactly, so that the effect under test is not
+confounded with approximation error. (iii) An honest account of what we can and
+cannot yet show, including two negative results and one retracted claim.
+
+\section{Related work}
+
+\textbf{Decision-relevant elicitation already exists.} \citet{regan2009}
+introduced regret-based reward elicitation for MDPs; \citet{alizadeh2015}
+extended it approximately. \citet{modelfreepe2024} score queries by expected
+value of information toward recommendation quality, in recommender systems with
+no policy. We claim no conceptual novelty over this line.
+
+\textbf{Acquisition functions in robot reward learning} form a sequence of
+corrections. Volume removal~\citep{sadigh2017} admits the trivial query --- two
+identical options --- as a global optimum. Information gain~\citep{biyik2019}
+makes it a global minimum and, by subtracting the human's expected answer
+uncertainty, yields questions people can actually answer. \citet{biyik2024}
+argue parameter-space entropy is wasteful because many parameters give one
+reward and many rewards give one behavior; \citet{bickfordsmith2023} make the
+same argument for active learning generally, showing information gain about
+parameters can underperform random selection. Our objective is the natural
+endpoint of both critiques, moved one step further: not to predictions, but to
+actions.
+
+\textbf{Population priors.} Latent-user models learn how users
+differ~\citep{poddar2024,pal2024,maxmin2024}, but adapt from fixed or randomly
+chosen queries. We reuse their premise --- that a population constrains who a
+new user can be --- and spend it on choosing questions.
+
+\section{Method}
+
+\textbf{Setup.} Reward is linear in state features, $r(s) = w \cdot \phi(s)$,
+with $\|w\| = 1$. A trajectory segment is summarized by its discounted feature
+count $f = \sum_t \gamma^t \phi(s_t)$; a query is a pair of segments with
+$\delta = f_A - f_B$. A user with consistency $b > 0$ answers according to
+Bradley--Terry, $P(A \succ B) = \sigma(b \, w \cdot \delta)$.
+
+Normalizing $w$ is not cosmetic. Only the product $b\|w\|$ affects any answer
+probability, so leaving both free makes consistency an artifact of the
+parameterization rather than a property of the person.
+
+\textbf{Population prior.} We represent beliefs about the current user as
+weighted particles $\{w_i\}_{i=1}^N$ drawn from a multi-modal prior fit to
+previous users, updated by exact Bayes on each answer. This is the component
+absent from \citet{regan2009}: the elicitor never searches reward space at
+large, only the part the population occupies.
+
+\textbf{Baseline acquisition (BALD).} Information about the reward,
+\begin{equation}
+\text{score}(q) = H\!\left[\mathbb{E}_w\, p(y \mid w)\right]
+                - \mathbb{E}_w H\!\left[p(y \mid w)\right],
+\end{equation}
+high when particles disagree, with per-particle answer noise subtracted. The
+subtraction is what makes the trivial query score exactly zero.
+
+\textbf{Decision-relevant acquisition (VOI).} Let $\pi(\rho)$ be the optimal
+policy for the mean reward of posterior $\rho$, and define the loss of acting on
+it as the expected regret across who the user might be,
+\begin{equation}
+L(\rho) = \mathbb{E}_{w \sim \rho}\!\left[V^{*}_{w} - V^{\pi(\rho)}_{w}\right].
+\end{equation}
+We then score each candidate by the expected improvement in that loss,
+\begin{equation}
+\text{score}(q) = L(\rho) - \sum_{y} P(y)\, L(\rho \mid y).
+\end{equation}
+Each candidate costs two value iterations. That expense is why the 2009 work
+remained in small tabular MDPs, and why the population prior matters here.
+
+\section{Experiments}
+
+\textbf{Domain.} A $6{\times}6$ gridworld with one-hot terrain features,
+$\gamma = 0.95$, in which the optimal policy and the true regret of acting on a
+wrong reward are both exact. Approximation error in a larger domain would be
+indistinguishable from the effect we are measuring, so the first experiment
+admits none. Users are drawn from a three-mode population prior, which is also
+the elicitor's particle prior.
+
+\textbf{Protocol.} Four strategies share the same posterior machinery, the same
+users and the same candidate queries: \textsc{random}; \textsc{bald};
+\textsc{voi}; and an \textsc{oracle} that cheats by scoring against true regret.
+The oracle is essential --- without it one cannot distinguish a good method from
+an easy problem. Runs are paired, so we report paired bootstrap confidence
+intervals (10{,}000 resamples) rather than independent standard errors.
+
+\begin{table}[t]
+\centering
+\small
+\begin{tabular}{lcccc}
+\toprule
+& \textsc{random} & \textsc{bald} & \textsc{voi} & \textsc{oracle} \\
+\midrule
+Regret after 10 queries & $3.67 \pm 0.34$ & $3.39 \pm 0.33$ & $\mathbf{2.37 \pm 0.26}$ & $0.25 \pm 0.07$ \\
+Queries to threshold    & $6.08 \pm 0.34$ & $5.77 \pm 0.33$ & $\mathbf{5.14 \pm 0.33}$ & $2.21 \pm 0.21$ \\
+Runs reaching threshold & 66\% & 69\% & 75\% & 95\% \\
+\bottomrule
+\end{tabular}
+\caption{Results at $d{=}8$ over 150 user-runs (10 seeds $\times$ 15 users),
+mean $\pm$ standard error. Lower is better.}
+\label{tab:main}
+\end{table}
+
+\textbf{Results.} Table~\ref{tab:main} gives the powered run. On the paired
+comparison of queries-to-threshold, \textsc{voi} improves on \textsc{bald} by
+$0.63$ queries, 95\% CI $[0.02, 1.25]$; on \textsc{random} by $0.94$, CI
+$[0.18, 1.71]$. \textsc{bald} does \emph{not} separate from \textsc{random} in
+this domain, CI $[-0.43, 1.03]$.
+
+We do not want to oversell the first of those. The interval's lower bound is
+$0.02$, $43\%$ of runs tie, and a third of runs never reach the threshold, so
+censoring may bias the estimate. The final-regret comparison is cleaner --- a
+roughly three-standard-error gap --- and we expect it to become the primary
+metric in future runs, a decision we will fix before collecting them rather
+than after.
+
+\textbf{The oracle gap is the more useful number.} \textsc{oracle} reaches the
+threshold in $2.21$ queries against \textsc{voi}'s $5.14$, and ends at regret
+$0.25$ against $2.37$. Our acquisition captures roughly half of what is
+available even with perfect knowledge of the user. The remaining headroom is
+about estimator quality --- we currently use only the posterior-mean policy and
+a two-point marginalization over the answer --- rather than about the choice of
+target.
+
+\section{What did not work}
+
+\textbf{At $d{=}4$, the effect is not detectable.} Over 48 user-runs the
+\textsc{bald}$-$\textsc{voi} difference was $0.42$ queries, CI $[-0.38, 1.17]$.
+Sweeping feature dimension gives $+0.42$ at $d{=}4$, $+1.42$ at $d{=}8$ and
+$+1.00$ at $d{=}12$ at 24 runs per cell, with every interval containing zero.
+The direction is consistent with reward and behavioral uncertainty decoupling as
+dimension grows, but we cannot presently claim it.
+
+\textbf{A related factorization gave nothing.} In separate experiments we split
+the user latent into preference direction and answer consistency, expecting the
+second to matter when population reliability varies. Against a single-latent
+baseline it did not improve held-out prediction at any spread, and recovered
+consistency at correlation near zero. A follow-up showed why: consistency is
+recoverable ($r = 0.87$) when the preference direction is supplied and query
+difficulty is controlled, but easy queries are catastrophic for it (median
+absolute error $23$ against a true median of $3$), because a user who answers
+every easy question correctly is indistinguishable from a perfect one. The
+bottleneck is joint estimation from a small uncontrolled context set.
+
+\textbf{A retraction.} Our first single-seed run showed \textsc{bald}
+performing worse than \textsc{random}, which would have echoed
+\citet{bickfordsmith2023} neatly. It did not survive additional seeds. We
+report it because the workshop invites negative results, and because the
+temptation to keep a convenient single-seed finding is the failure mode this
+venue exists to discourage.
+
+\section{Limitations and next steps}
+
+Everything here is simulation with users generated from the same response model
+the estimator assumes --- the most generous possible condition, and one that
+never holds with people. The domain is small enough for exact regret, which is
+also small enough that reward and behavioral uncertainty may largely coincide.
+Immediate next steps are a better VOI estimator, a domain where the decoupling
+is structural rather than incidental, and a mismatch protocol that samples
+answers from response models outside the assumed family.
+
+The question we would most like feedback on: given that the decision-relevant
+criterion is seventeen years old, is the population-prior instantiation a
+sufficient contribution on its own, or does it need accompanying theory?
+
+
+\begin{thebibliography}{99}
+\small
+\bibitem[Alizadeh et al.(2015)]{alizadeh2015} P.~Alizadeh et al.
+Approximate regret based elicitation in Markov decision processes. \emph{RIVF}, 2015.
+
+\bibitem[Bickford Smith et al.(2023)]{bickfordsmith2023} F.~Bickford Smith et al.
+Prediction-oriented Bayesian active learning. \emph{AISTATS}, 2023.
+
+\bibitem[B\i y\i k and Sadigh(2018)]{biyik2018} E.~B\i y\i k and D.~Sadigh.
+Batch active preference-based learning of reward functions. \emph{CoRL}, 2018.
+
+\bibitem[B\i y\i k et al.(2019)]{biyik2019} E.~B\i y\i k et al.
+Asking easy questions: a user-friendly approach to active reward learning.
+\emph{CoRL}, 2019.
+
+\bibitem[B\i y\i k et al.(2024)]{biyik2024} E.~B\i y\i k et al.
+A generalized acquisition function for preference-based reward learning.
+\emph{ICRA}, 2024.
+
+\bibitem[Hejna and Sadigh(2022)]{hejna2022} J.~Hejna and D.~Sadigh.
+Few-shot preference learning for human-in-the-loop RL. \emph{CoRL}, 2022.
+
+\bibitem[Chaudhari et al.(2024)]{modelfreepe2024} S.~Chaudhari et al.
+Model-free preference elicitation. \emph{IJCAI}, 2024.
+
+\bibitem[Chakraborty et al.(2024)]{maxmin2024} S.~Chakraborty et al.
+MaxMin-RLHF: alignment with diverse human preferences. \emph{ICML}, 2024.
+
+\bibitem[Poddar et al.(2024)]{poddar2024} S.~Poddar et al.
+Personalizing RLHF with variational preference learning. \emph{NeurIPS}, 2024.
+
+\bibitem[Chen et al.(2024)]{pal2024} D.~Chen et al.
+PAL: sample-efficient personalized reward modeling for pluralistic alignment,
+2024.
+
+\bibitem[Regan and Boutilier(2009)]{regan2009} K.~Regan and C.~Boutilier.
+Regret-based reward elicitation for Markov decision processes. \emph{UAI}, 2009.
+
+\bibitem[Sadigh et al.(2017)]{sadigh2017} D.~Sadigh et al.
+Active preference-based learning of reward functions. \emph{RSS}, 2017.
+\end{thebibliography}
+
+\end{document}

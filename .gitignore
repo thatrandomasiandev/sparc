@@ -1,0 +1,103 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+.cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
+secrets/
+
+# Experiment artifacts (keep structure, ignore outputs)
+experiments/runs/**
+!experiments/runs/.gitkeep
+experiments/artifacts/**
+!experiments/artifacts/.gitkeep
+data/raw/**
+!data/raw/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+data/external/**
+!data/external/.gitkeep
+
+# Notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# LaTeX build
+paper/build/
+paper/**/*.aux
+paper/**/*.bbl
+paper/**/*.blg
+paper/**/*.fdb_latexmk
+paper/**/*.fls
+paper/**/*.log
+paper/**/*.out
+paper/**/*.synctex.gz
+paper/**/*.toc
+paper/**/*.lof
+paper/**/*.lot
+paper/**/*.nav
+paper/**/*.snm
+paper/**/*.vrb
+paper/**/*.bcf
+paper/**/*.run.xml
+paper/main.pdf
+
+# Figures generated from experiments (keep sources)
+# paper/figures/generated/
+
+# Model checkpoints / large binaries
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.onnx
+*.pkl
+*.pickle
+*.joblib
+wandb/
+mlruns/
+lightning_logs/
+
+# CARC Slurm logs (keep directory via carc/logs/.gitkeep)
+carc/logs/*.out
+carc/logs/*.err
+
+# Misc
+*.tmp
+*.bak
+.spotlight-V100
+.Trashes
+src/*.egg-info/

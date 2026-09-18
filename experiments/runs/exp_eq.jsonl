@@ -1,0 +1,30 @@
+{"kind": "pairwise", "d": 2, "seed": 0, "n_samples": 200, "n_unique_policies": 69, "mean_cluster_size": 2.898550724637681, "max_cluster_size": 17, "pairwise_match_rate": 0.03030150753768844, "compression": 0.655}
+{"kind": "local_stability", "d": 2, "seed": 0, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.49}
+{"kind": "pairwise", "d": 2, "seed": 1, "n_samples": 200, "n_unique_policies": 80, "mean_cluster_size": 2.5, "max_cluster_size": 13, "pairwise_match_rate": 0.017989949748743718, "compression": 0.6}
+{"kind": "local_stability", "d": 2, "seed": 1, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.364}
+{"kind": "pairwise", "d": 2, "seed": 2, "n_samples": 200, "n_unique_policies": 48, "mean_cluster_size": 4.166666666666667, "max_cluster_size": 14, "pairwise_match_rate": 0.02949748743718593, "compression": 0.76}
+{"kind": "local_stability", "d": 2, "seed": 2, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.516}
+{"kind": "pairwise", "d": 4, "seed": 0, "n_samples": 200, "n_unique_policies": 191, "mean_cluster_size": 1.0471204188481675, "max_cluster_size": 2, "pairwise_match_rate": 0.0004522613065326633, "compression": 0.04500000000000004}
+{"kind": "local_stability", "d": 4, "seed": 0, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.088}
+{"kind": "pairwise", "d": 4, "seed": 1, "n_samples": 200, "n_unique_policies": 190, "mean_cluster_size": 1.0526315789473684, "max_cluster_size": 2, "pairwise_match_rate": 0.0005025125628140704, "compression": 0.050000000000000044}
+{"kind": "local_stability", "d": 4, "seed": 1, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.11}
+{"kind": "pairwise", "d": 4, "seed": 2, "n_samples": 200, "n_unique_policies": 189, "mean_cluster_size": 1.0582010582010581, "max_cluster_size": 3, "pairwise_match_rate": 0.0006030150753768845, "compression": 0.05500000000000005}
+{"kind": "local_stability", "d": 4, "seed": 2, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.122}
+{"kind": "pairwise", "d": 8, "seed": 0, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 8, "seed": 0, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.039}
+{"kind": "pairwise", "d": 8, "seed": 1, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 8, "seed": 1, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.048}
+{"kind": "pairwise", "d": 8, "seed": 2, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 8, "seed": 2, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.054}
+{"kind": "pairwise", "d": 12, "seed": 0, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 12, "seed": 0, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.022}
+{"kind": "pairwise", "d": 12, "seed": 1, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 12, "seed": 1, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.019}
+{"kind": "pairwise", "d": 12, "seed": 2, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 12, "seed": 2, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.024}
+{"kind": "pairwise", "d": 16, "seed": 0, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 16, "seed": 0, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.017}
+{"kind": "pairwise", "d": 16, "seed": 1, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 16, "seed": 1, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.017}
+{"kind": "pairwise", "d": 16, "seed": 2, "n_samples": 200, "n_unique_policies": 200, "mean_cluster_size": 1.0, "max_cluster_size": 1, "pairwise_match_rate": 0.0, "compression": 0.0}
+{"kind": "local_stability", "d": 16, "seed": 2, "n_centers": 40, "n_perturb": 25, "eps": 0.1, "local_stable_rate": 0.008}

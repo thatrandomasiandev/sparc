@@ -1,0 +1,24 @@
+
+=== metric: final_regret (n=150) ===
+  bald        mean=2.8125  se=0.2497
+  oracle      mean=0.8539  se=0.1237
+  random      mean=3.3557  se=0.2895
+  voi         mean=2.6828  se=0.2573
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.1298  95% CI [-0.5850, +0.8349]  tie_rate=0.01
+    random-voi: +0.6730  95% CI [+0.0036, +1.3562]  tie_rate=0.01
+    voi-oracle: +1.8288  95% CI [+1.3192, +2.3754]  tie_rate=0.00
+
+=== metric: queries_to_threshold (n=150) ===
+  bald        mean=6.2000  se=0.3610
+  oracle      mean=4.2200  se=0.3363
+  random      mean=6.4933  se=0.3625
+  voi         mean=5.8533  se=0.3569
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.3467  95% CI [-0.2400, +0.9333]  tie_rate=0.56
+    random-voi: +0.6400  95% CI [-0.0800, +1.3467]  tie_rate=0.42
+    voi-oracle: +1.6333  95% CI [+0.9467, +2.3200]  tie_rate=0.45
+  bald        reach_rate=0.59
+  oracle      reach_rate=0.77
+  random      reach_rate=0.56
+  voi         reach_rate=0.64

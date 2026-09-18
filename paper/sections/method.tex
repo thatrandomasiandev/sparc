@@ -1,0 +1,57 @@
+\section{Method}
+\label{sec:method}
+
+% Algorithm source of truth: plr/algorithm.py (POP-VOI).
+% Claims about empirics must cite Claim IDs in docs/CLAIMS.md (I8).
+
+\subsection{Problem Setup}
+\label{sec:setup}
+A user has unit preference weights $w\in\mathbb{R}^d$ ($\lVert w\rVert=1$) and
+consistency $b>0$.
+Trajectory segments are summarized by features $f$; a query is a pair (or $K$-tuple)
+of segments.
+Answers follow Bradley--Terry / Plackett--Luce.
+The robot acts with a policy $\pi$ on an MDP; regret is
+$V^*_w - V^{\pi}_w$.
+
+\subsection{Approach}
+\label{sec:approach}
+We maintain a belief $\beta$ as weights over a \emph{fixed} particle set drawn from a
+population prior over previous users.
+The myopic value of a query $q$ is the expected reduction in posterior policy loss
+\[
+\mathrm{score}(q)
+=
+\mathrm{Loss}(\beta)
+-
+\sum_y P_\beta(y\mid q)\,
+\mathrm{Loss}(\beta\mid q,y).
+\]
+Unlike BALD, $\mathrm{Loss}$ is defined in terms of policy values, not parameter
+entropy.
+
+\subsection{Algorithm}
+\label{sec:algorithm}
+\begin{algorithm}[t]
+\caption{POP-VOI (population-prior regret VOI elicitation)}
+\label{alg:popvoi}
+\begin{algorithmic}[1]
+  \Require MDP $\mathcal{M}$, population particles $\{(w_p,b_p)\}_{p=1}^P$,
+           candidate queries $\mathcal{Q}$, budget $T$
+  \State Initialize weights $\beta(w_p)\leftarrow 1/P$
+  \For{$t=1,\ldots,T$}
+    \State $q_t \leftarrow \arg\max_{q\in\mathcal{Q}} \mathrm{score}(q;\beta)$
+    \State Observe ranking $y_t$ for $q_t$
+    \State $\beta(w_p)\propto \beta(w_p)\,P(y_t\mid q_t,w_p,b_p)$
+  \EndFor
+  \State \Return $\pi^*$ for $\hat w=\mathrm{normalize}(\mathbb{E}_\beta[w])$
+\end{algorithmic}
+\end{algorithm}
+
+Implementation: \texttt{plr.algorithm.POPVOI}
+(select $\rightarrow$ update $\rightarrow$ decide).
+
+\subsection{Complexity / Practical Notes}
+Particles and their optimal policies are cached once; only weights change online.
+Candidate pools stay modest ($|\mathcal{Q}|\!\sim\!10$--$50$); binary queries use
+$2!$ answer marginalization.

@@ -1,0 +1,50 @@
+#!/bin/bash
+# Scaffold smoke on CARC GPU — replace with the locked suite from EXPERIMENTS.md.
+# Submit: ./carc/scripts/submit.sh carc/jobs/smoke.job
+
+#SBATCH --job-name=research_smoke
+#SBATCH --account=biyik_1165
+#SBATCH --partition=gpu
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=8
+#SBATCH --gpus-per-task=v100:1
+#SBATCH --mem=32G
+#SBATCH --time=1:00:00
+#SBATCH --output=/project2/biyik_1165/jjt_373/research/carc/logs/smoke-%j.out
+#SBATCH --error=/project2/biyik_1165/jjt_373/research/carc/logs/smoke-%j.err
+
+set -euo pipefail
+
+ROOT="/project2/biyik_1165/jjt_373/research"
+# shellcheck source=/dev/null
+source "${ROOT}/carc/env.sh"
+
+if [[ -f /etc/profile.d/modules.sh ]]; then
+  # shellcheck source=/dev/null
+  source /etc/profile.d/modules.sh
+fi
+module purge
+module load gcc/13.3.0 2>/dev/null || module load gcc/11.3.0 || true
+module load cuda/12.4.0 2>/dev/null || module load cuda/12.6.3 || true
+
+# shellcheck source=/dev/null
+source "${CARC_CONDA_DIR}/etc/profile.d/conda.sh"
+conda activate "${CARC_ENV_NAME}"
+
+mkdir -p "${ROOT}/carc/logs" "${CARC_SCRATCH_DIR}/experiments/runs"
+OUT_DIR="${CARC_SCRATCH_DIR}/experiments/runs/carc_smoke"
+mkdir -p "${OUT_DIR}"
+
+cd "${ROOT}"
+nvidia-smi || true
+
+research train \
+  --config experiments/configs/smoke_placeholder.json \
+  --seed 0 \
+  --output-dir "${OUT_DIR}"
+
+mkdir -p "${ROOT}/experiments/runs/carc_smoke"
+rsync -a "${OUT_DIR}/" "${ROOT}/experiments/runs/carc_smoke/"
+
+echo SMOKE_DONE

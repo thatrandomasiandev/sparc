@@ -1,0 +1,15 @@
+=== E-eq primary: local_stable_rate vs d (C-mot-1) ===
+  d= 2  n=3  local_stable=0.457 ± 0.047
+  d= 4  n=3  local_stable=0.107 ± 0.010
+  d= 8  n=3  local_stable=0.047 ± 0.004
+  d=12  n=3  local_stable=0.022 ± 0.001
+  d=16  n=3  local_stable=0.014 ± 0.003
+
+=== E-eq-d secondary: pairwise_match_rate vs d (C-mot-2) ===
+  d= 2  n=3  match=0.0259 ± 0.0040  compression≈0.672
+  d= 4  n=3  match=0.0005 ± 0.0000  compression≈0.050
+  d= 8  n=3  match=0.0000 ± 0.0000  compression≈0.000
+  d=12  n=3  match=0.0000 ± 0.0000  compression≈0.000
+  d=16  n=3  match=0.0000 ± 0.0000  compression≈0.000
+
+  pairwise match vs d slope ≈ -0.001282

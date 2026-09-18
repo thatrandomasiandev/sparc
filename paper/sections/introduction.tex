@@ -1,0 +1,22 @@
+\section{Introduction}
+\label{sec:introduction}
+
+Robots that learn from pairwise preference feedback typically choose the next query by
+maximizing information about the user's reward parameters
+\citep{sadigh2017active,biyik2019asking}.
+A large fraction of that uncertainty never changes what the robot should \emph{do}:
+many rewards induce the same optimal policy.
+We therefore select queries by expected reduction in \emph{policy regret}, following the
+decision-theoretic line of \citet{regan2009regret} and the recommendation-quality VOI of
+Model-Free Preference Elicitation~\citep{modelfree2024}, instantiated here for
+trajectory-segment comparisons under a \emph{population prior} over previous users.
+
+\subsection{Contributions}
+\begin{enumerate}
+  \item Formalize preference-query acquisition as expected policy-regret reduction under a
+        particle prior drawn from a user population (not unrestricted reward space).
+  \item Empirically compare random, BALD, VOI, and an oracle ceiling on a gridworld with
+        exact regret; report paired bootstrap intervals and the oracle gap.
+  \item Document negative and explanatory results on consistency identification
+        (factored latent; difficulty regimes) so claims stay within what the evidence supports.
+\end{enumerate}
