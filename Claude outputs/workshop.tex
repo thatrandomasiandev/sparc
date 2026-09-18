@@ -46,8 +46,10 @@ consequence. We select queries instead by expected reduction in policy regret,
 computed under a prior learned from a population of previous users. In an MDP
 where optimal policies and true regret are exact, decision-relevant selection
 reaches lower regret than information-gain selection after ten queries
-($2.37 \pm 0.26$ vs.\ $3.39 \pm 0.33$, $n{=}150$), and the paired advantage in
-queries-to-threshold is $0.63$ queries, 95\% CI $[0.02, 1.25]$ --- positive but
+($2.37 \pm 0.26$ vs.\ $3.39 \pm 0.33$, $n{=}150$), % UNREPRODUCED — see RESULTS.md
+and the paired advantage in
+queries-to-threshold is $0.63$ queries, 95\% CI $[0.02, 1.25]$ % UNREPRODUCED — see RESULTS.md
+--- positive but
 fragile. We also report two negative results and one retraction. The idea is
 not new; regret-based reward elicitation dates to 2009. What is new is the
 instantiation with human trajectory comparisons and a learned population prior,
@@ -173,8 +175,8 @@ intervals (10{,}000 resamples) rather than independent standard errors.
 \toprule
 & \textsc{random} & \textsc{bald} & \textsc{voi} & \textsc{oracle} \\
 \midrule
-Regret after 10 queries & $3.67 \pm 0.34$ & $3.39 \pm 0.33$ & $\mathbf{2.37 \pm 0.26}$ & $0.25 \pm 0.07$ \\
-Queries to threshold    & $6.08 \pm 0.34$ & $5.77 \pm 0.33$ & $\mathbf{5.14 \pm 0.33}$ & $2.21 \pm 0.21$ \\
+Regret after 10 queries & $3.67 \pm 0.34$ & $3.39 \pm 0.33$ & $\mathbf{2.37 \pm 0.26}$ & $0.25 \pm 0.07$ \\ % UNREPRODUCED — see RESULTS.md
+Queries to threshold    & $6.08 \pm 0.34$ & $5.77 \pm 0.33$ & $\mathbf{5.14 \pm 0.33}$ & $2.21 \pm 0.21$ \\ % UNREPRODUCED — see RESULTS.md
 Runs reaching threshold & 66\% & 69\% & 75\% & 95\% \\
 \bottomrule
 \end{tabular}
@@ -185,7 +187,8 @@ mean $\pm$ standard error. Lower is better.}
 
 \textbf{Results.} Table~\ref{tab:main} gives the powered run. On the paired
 comparison of queries-to-threshold, \textsc{voi} improves on \textsc{bald} by
-$0.63$ queries, 95\% CI $[0.02, 1.25]$; on \textsc{random} by $0.94$, CI
+$0.63$ queries, 95\% CI $[0.02, 1.25]$; % UNREPRODUCED — see RESULTS.md
+on \textsc{random} by $0.94$, CI
 $[0.18, 1.71]$. \textsc{bald} does \emph{not} separate from \textsc{random} in
 this domain, CI $[-0.43, 1.03]$.
 
@@ -197,8 +200,9 @@ metric in future runs, a decision we will fix before collecting them rather
 than after.
 
 \textbf{The oracle gap is the more useful number.} \textsc{oracle} reaches the
-threshold in $2.21$ queries against \textsc{voi}'s $5.14$, and ends at regret
-$0.25$ against $2.37$. Our acquisition captures roughly half of what is
+threshold in $2.21$ queries against \textsc{voi}'s $5.14$, and ends at regret % UNREPRODUCED — see RESULTS.md
+$0.25$ against $2.37$. % UNREPRODUCED — see RESULTS.md
+Our acquisition captures roughly half of what is
 available even with perfect knowledge of the user. The remaining headroom is
 about estimator quality --- we currently use only the posterior-mean policy and
 a two-point marginalization over the answer --- rather than about the choice of

@@ -24,6 +24,38 @@ def load_rows(path: Path) -> list[dict]:
     return rows
 
 
+def early_mean_regret(curve: list[float] | np.ndarray, n_queries: int = 3) -> float:
+    """Mean regret over the first n_queries points of regret_curve (1-indexed queries 1..n)."""
+    arr = np.asarray(curve, dtype=float)
+    if len(arr) < n_queries:
+        raise ValueError(f"regret_curve length {len(arr)} < {n_queries}")
+    return float(arr[:n_queries].mean())
+
+
+def early_auc_regret(curve: list[float] | np.ndarray, n_queries: int = 5) -> float:
+    """Trapezoidal area under regret_curve over the first n_queries points (queries 1..n)."""
+    arr = np.asarray(curve, dtype=float)
+    if len(arr) < n_queries:
+        raise ValueError(f"regret_curve length {len(arr)} < {n_queries}")
+    # Unit spacing between consecutive queries; AUC over indices 0..n_queries-1.
+    # np.trapezoid is NumPy ≥2.0; fall back to np.trapz on older installs.
+    trap = getattr(np, "trapezoid", None) or np.trapz
+    return float(trap(arr[:n_queries], dx=1.0))
+
+
+def with_curve_metrics(rows: list[dict]) -> list[dict]:
+    """Attach early-budget metrics derived from regret_curve onto each row."""
+    out = []
+    for r in rows:
+        row = dict(r)
+        curve = r.get("regret_curve")
+        if curve is not None:
+            row["early_mean_q1_3"] = early_mean_regret(curve, 3)
+            row["early_auc_q1_5"] = early_auc_regret(curve, 5)
+        out.append(row)
+    return out
+
+
 def paired_table(rows: list[dict], metric: str) -> dict[str, np.ndarray]:
     """Map strategy -> array aligned on (seed, user)."""
     strategies = sorted({r["strategy"] for r in rows})
@@ -109,20 +141,42 @@ def main() -> None:
     p.add_argument("--n-boot", type=int, default=10_000)
     p.add_argument(
         "--primary",
-        choices=["final_regret", "queries_to_threshold"],
+        choices=[
+            "final_regret",
+            "queries_to_threshold",
+            "early_mean_q1_3",
+            "early_auc_q1_5",
+        ],
         default="final_regret",
         help="Primary metric (pre-specify before runs)",
     )
     args = p.parse_args()
-    rows = load_rows(args.results)
+    rows = with_curve_metrics(load_rows(args.results))
     if not rows:
         raise SystemExit(f"No rows in {args.results}")
 
-    summarize(rows, args.primary, args.n_boot)
+    # Always report E3-power-120 pre-registered metrics when curves are present.
+    metrics: list[str] = []
+    if any("regret_curve" in r for r in rows):
+        metrics.extend(["early_mean_q1_3", "early_auc_q1_5"])
+    metrics.append(args.primary)
     secondary = (
         "queries_to_threshold" if args.primary == "final_regret" else "final_regret"
     )
-    summarize(rows, secondary, args.n_boot)
+    if secondary not in metrics:
+        metrics.append(secondary)
+    # Keep tertiary final regret visible even when primary is an early metric.
+    if "final_regret" not in metrics:
+        metrics.append("final_regret")
+    if "queries_to_threshold" not in metrics:
+        metrics.append("queries_to_threshold")
+
+    seen: set[str] = set()
+    for m in metrics:
+        if m in seen:
+            continue
+        seen.add(m)
+        summarize(rows, m, args.n_boot)
 
 
 if __name__ == "__main__":

@@ -18,9 +18,12 @@ No win at any consistency spread; corr(b) ≈ 0 under random context queries.
 
 Caveat: random is better than expected — always cite alongside hard.
 
-## Experiment 3 — decision-relevant elicitation (PRELIMINARY POSITIVE)
+## Experiment 3 — decision-relevant elicitation
 
-Powered d=8, 150 user-runs (10×15):
+### UNREPRODUCED — produced outside this repo, no provenance
+
+Powered d=8, 150 user-runs (10×15), labeled "120 particles" in older notes.
+**Not produced by any code in this repository.**
 
 | Metric | random | BALD | VOI | oracle |
 |--------|--------|------|-----|--------|
@@ -30,8 +33,6 @@ Powered d=8, 150 user-runs (10×15):
 
 Paired bootstrap (queries-to-threshold): BALD−VOI **+0.63 [+0.02, +1.25]** (fragile);
 random−BALD CI contains 0. Prefer **final-regret** as primary going forward.
-
-Oracle gap (2.21 vs 5.14 queries; 0.249 vs 2.365 regret) is algorithmic headroom — queue #1.
 
 ## Primary metric decision (pre-specified before next run)
 
@@ -69,7 +70,26 @@ Oracle gap (2.21 vs 5.14 queries; 0.249 vs 2.365 regret) is algorithmic headroom
 - **Algorithm:** `plr.algorithm.POPVOI`
 - **Command:**
   `python experiment_3.py --seeds 0 1 2 3 4 5 6 7 8 9 --d 8 --n-users 15 --strategies random bald voi oracle --out experiments/runs/exp3_power_d8.jsonl`
-- **Verdict:** _pending run_
+- **Verdict: NULL on the primary metric.** Final regret (n=150, 48 particles): random 3.356, BALD 2.813, VOI 2.683, oracle 0.854. Paired: BALD−VOI +0.13 [−0.59, +0.83]; random−VOI +0.67 [+0.004, +1.36] (just clears zero); VOI−oracle +1.83 [+1.32, +2.38]. Secondary (queries-to-threshold): BALD−VOI +0.35 [−0.24, +0.93], tie rate 0.56; reach rates random 56%, BALD 59%, VOI 64%, oracle 77%.
+- C-main-2 (VOI < BALD): **not supported**. C-main-1 (VOI < random): fragile.
+- **Provenance note:** this run's code differs from baseline commit `00363ab` (`pre-rerun-baseline`) in `plr/domains.py` and `plr/mdp.py` (edited during/after the run). Aggregate: `experiments/runs/exp3_power_d8_agg.txt`.
+
+### E3-power-120 — PRE-SPECIFIED 2026-09-17, before launch
+
+- **Baseline tag:** `pre-rerun-baseline` / `00363ab`; **pre-registration:** tag `e3-power-120-prereg`
+- **Question:** does raising particles from 48 to 120 recover VOI < BALD? This is a new experiment, not a rescue of E3-power.
+- **Claims:** C-main-1, C-main-2 (re-tested at 120 particles)
+- **Protocol:** identical to E3-power except `--n-particles 120`. Same seeds 0–9, 15 users, d=8, 10 queries, 24 candidates, same candidate generation (pool drawn once per seed, single-state pairs). Change nothing else. One variable changes, so the result is directly comparable with the 48-particle null.
+- **Primary:** mean regret over queries 1–3 (from `regret_curve[0:3]`).
+- **Secondary:** area under the regret curve over queries 1–5.
+- **Tertiary:** final-query regret (the E3-power primary, kept for continuity).
+- All reported as paired bootstrap with 10k resamples, with tie rate and reach rate. Report all three whichever way they come out.
+- **Rationale:** VOI's early lead is visible in the curves, and the claim is about low budgets. This metric is pre-registered after E3-power used final regret as primary.
+- **Kill condition:** if the BALD−VOI CI on the primary metric contains zero, record C-main-2 as unsupported at 120 particles too.
+- **Command:**
+  `python experiment_3.py --seeds 0 1 2 3 4 5 6 7 8 9 --d 8 --n-users 15 --n-particles 120 --strategies random bald voi oracle --out experiments/runs/exp3_power_d8_p120.jsonl`
+- **Output:** `experiments/runs/exp3_power_d8_p120.jsonl` (log alongside)
+- **Verdict:** _pending launch_
 
 ### Queue #1 run — VOI estimator ablation (2026-09-17)
 
