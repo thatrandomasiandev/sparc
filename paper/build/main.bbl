@@ -1,0 +1,145 @@
+\begin{thebibliography}{19}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Alizadeh et~al.(2015)Alizadeh, Chevaleyre, and
+  Zucker]{alizadeh2015approximate}
+Pegah Alizadeh, Yann Chevaleyre, and Jean-Daniel Zucker.
+\newblock Approximate regret based elicitation in {Markov} decision process.
+\newblock In \emph{IEEE RIVF International Conference on Computing and
+  Communication Technologies}, pages 47--52, 2015.
+\newblock \doi{10.1109/RIVF.2015.7049873}.
+
+\bibitem[B{\i}y{\i}k and Sadigh(2018)]{biyik2018batch}
+Erdem B{\i}y{\i}k and Dorsa Sadigh.
+\newblock Batch active preference-based learning of reward functions.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, pages 519--528, 2018.
+
+\bibitem[B{\i}y{\i}k et~al.(2019)B{\i}y{\i}k, Palan, Landolfi, Losey, and
+  Sadigh]{biyik2019asking}
+Erdem B{\i}y{\i}k, Malayandi Palan, Nicholas~C. Landolfi, Dylan~P. Losey, and
+  Dorsa Sadigh.
+\newblock Asking easy questions: A user-friendly approach to active reward
+  learning.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, 2019.
+
+\bibitem[Boroomand and Wright(2025)]{boroomand2025utility}
+Bahar Boroomand and James~R. Wright.
+\newblock Personalized recommendations via active utility-based pairwise
+  sampling.
+\newblock 2025.
+\newblock arXiv:2508.14911.
+
+\bibitem[Chakraborty et~al.(2024)Chakraborty, Qiu, Yuan, Koppel, Manocha,
+  Huang, Bedi, and Wang]{chakraborty2024maxmin}
+Souradip Chakraborty, Jiahao Qiu, Hui Yuan, Alec Koppel, Dinesh Manocha, Furong
+  Huang, Amrit Bedi, and Mengdi Wang.
+\newblock {MaxMin-RLHF}: Alignment with diverse human preferences.
+\newblock In \emph{International Conference on Machine Learning (ICML)}, pages
+  6116--6135, 2024.
+
+\bibitem[Chen et~al.(2025)Chen, Chen, Rege, Wang, and Vinayak]{chen2025pal}
+Daiwei Chen, Yi~Chen, Aniket Rege, Zhi Wang, and Ramya~Korlakai Vinayak.
+\newblock {PAL}: Sample-efficient personalized reward modeling for pluralistic
+  alignment.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2025.
+\newblock arXiv:2406.08469.
+
+\bibitem[Ellis et~al.(2024)Ellis, Ghosal, Russell, Dragan, and
+  B{\i}y{\i}k]{ellis2024equivalence}
+Evan Ellis, Gaurav~R. Ghosal, Stuart~J. Russell, Anca Dragan, and Erdem
+  B{\i}y{\i}k.
+\newblock A generalized acquisition function for preference-based reward
+  learning.
+\newblock 2024.
+\newblock arXiv:2403.06003; reward equivalence-class acquisition.
+
+\bibitem[Hejna and Sadigh(2023)]{hejna2023fewshot}
+Joey~III Hejna and Dorsa Sadigh.
+\newblock Few-shot preference learning for human-in-the-loop {RL}.
+\newblock In \emph{Conference on Robot Learning (CoRL)}, 2023.
+\newblock CoRL 2022 proceedings; ensemble disagreement queries.
+
+\bibitem[Houlsby et~al.(2011)Houlsby, Husz{\'a}r, Ghahramani, and
+  Lengyel]{houlsby2011bald}
+Neil Houlsby, Ferenc Husz{\'a}r, Zoubin Ghahramani, and M{\'a}t{\'e} Lengyel.
+\newblock Bayesian active learning for classification and preference learning.
+\newblock 2011.
+\newblock arXiv:1112.5745.
+
+\bibitem[Kim et~al.(2026)Kim, Lee, Chang, Lim, and Choi]{kim2026prec}
+Taehyung Kim, Gwangmo Lee, Minjun Chang, Sunghyun Lim, and Jongeun Choi.
+\newblock Deployable human preference alignment in robotics: Learning
+  representative rewards from diverse human preferences.
+\newblock 2026.
+\newblock arXiv:2607.12466; PREC / Preference-based REward Clustering.
+
+\bibitem[Martin et~al.(2024)Martin, Boutilier, Meshi, and
+  Sandholm]{modelfree2024}
+Carlos Martin, Craig Boutilier, Ofer Meshi, and Tuomas Sandholm.
+\newblock Model-free preference elicitation.
+\newblock In \emph{Proceedings of the Thirty-Third International Joint
+  Conference on Artificial Intelligence (IJCAI)}, pages 3493--3503, 2024.
+\newblock \doi{10.24963/ijcai.2024/387}.
+
+\bibitem[Muraleedharan and H(2025)]{muraleedharan2025sparq}
+Anujith Muraleedharan and Anamika~J H.
+\newblock Selective progress-aware querying for human-in-the-loop reinforcement
+  learning.
+\newblock 2025.
+\newblock arXiv:2509.20541; SPARQ.
+
+\bibitem[Oh et~al.(2025)Oh, Lee, and Ok]{oh2025ample}
+Minhyeon Oh, Seungjoon Lee, and Jungseul Ok.
+\newblock Comparison-based active preference learning for multi-dimensional
+  personalization.
+\newblock In \emph{Proceedings of the 63rd Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 33145--33166,
+  2025.
+\newblock AMPLe.
+
+\bibitem[Poddar et~al.(2024)Poddar, Wan, Ivison, Gupta, and
+  Jaques]{poddar2024vpl}
+Sriyash Poddar, Yanming Wan, Hamish Ivison, Abhishek Gupta, and Natasha Jaques.
+\newblock Personalizing reinforcement learning from human feedback with
+  variational preference learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}, 2024.
+
+\bibitem[Regan and Boutilier(2009)]{regan2009regret}
+Kevin Regan and Craig Boutilier.
+\newblock Regret-based reward elicitation for {Markov} decision processes.
+\newblock 2009.
+
+\bibitem[Sadigh et~al.(2017)Sadigh, Dragan, Sastry, and
+  Seshia]{sadigh2017active}
+Dorsa Sadigh, Anca~D. Dragan, Shankar Sastry, and Sanjit~A. Seshia.
+\newblock Active preference-based learning of reward functions.
+\newblock In \emph{Robotics: Science and Systems (RSS)}, 2017.
+
+\bibitem[Siththaranjan et~al.(2024)Siththaranjan, Laidlaw, and
+  Hadfield-Menell]{siththaranjan2024dpl}
+Anand Siththaranjan, Cassidy Laidlaw, and Dylan Hadfield-Menell.
+\newblock Distributional preference learning: Understanding and accounting for
+  hidden context in {RLHF}.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}, 2024.
+
+\bibitem[Smith et~al.(2023)Smith, Kirsch, Farquhar, and Gal]{epig2023}
+Freddie~Bickford Smith, Andreas Kirsch, Sebastian Farquhar, and Yarin Gal.
+\newblock Prediction-oriented bayesian active learning.
+\newblock In \emph{AISTATS}, 2023.
+\newblock EPIG.
+
+\bibitem[Zhou and B{\i}y{\i}k(2026)]{zhou2026preferenceekf}
+Yutai Zhou and Erdem B{\i}y{\i}k.
+\newblock Subspace inference enables efficient active reward learning from
+  preferences.
+\newblock 2026.
+\newblock arXiv:2609.04066; PreferenceEKF query synthesis.
+
+\end{thebibliography}

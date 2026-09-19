@@ -1,0 +1,9 @@
+
+=== all  n≈72 ===
+  map               mean=3.9364  sd=3.9263
+  mean              mean=2.8035  sd=3.5479
+  sample            mean=4.5021  sd=4.0913
+  softminimax       mean=3.0984  sd=3.6109
+  mean−softminimax: -0.2948  [-1.3728, +0.7234]
+  mean−map: -1.1328  [-2.3277, +0.0896]
+  mean−sample: -1.6986  [-2.8677, -0.5155]

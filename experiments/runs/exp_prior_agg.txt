@@ -1,0 +1,7 @@
+
+=== all  n≈120 ===
+  cheat             mean=-0.0000  sd=0.0000
+  population        mean=2.8995  sd=3.2571
+  uniform           mean=4.6423  sd=4.0614
+  uniform−population: +1.7428  [+0.8753, +2.6249]
+  cheat−population: -2.8995  [-3.5044, -2.3617]

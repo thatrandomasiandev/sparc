@@ -1,0 +1,24 @@
+=== E-decouple primary: paired BALD − VOI final regret vs ρ ===
+  ρ=0.00  n=24  BALD−VOI=+0.4520  95% CI [-0.8815, +2.0079]
+           random   mean_regret=2.4901
+           bald     mean_regret=2.4423
+           voi      mean_regret=1.9904
+           oracle   mean_regret=0.7416
+  ρ=0.25  n=24  BALD−VOI=+0.1303  95% CI [-1.4851, +1.9866]
+           random   mean_regret=3.3168
+           bald     mean_regret=3.0451
+           voi      mean_regret=2.9148
+           oracle   mean_regret=0.8650
+  ρ=0.50  n=24  BALD−VOI=+1.4848  95% CI [+0.0539, +3.2872]
+           random   mean_regret=2.2591
+           bald     mean_regret=3.0080
+           voi      mean_regret=1.5232
+           oracle   mean_regret=1.2295
+  ρ=0.75  n=24  BALD−VOI=+0.3859  95% CI [-0.5626, +1.4234]
+           random   mean_regret=1.3544
+           bald     mean_regret=1.8157
+           voi      mean_regret=1.4298
+           oracle   mean_regret=0.6041
+
+  mean gap vs ρ slope ≈ +0.4625  (prediction: > 0)
+  Verdict lean: supports C-mech-1 (check CI per ρ + powered n)

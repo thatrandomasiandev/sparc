@@ -1,0 +1,44 @@
+
+=== metric: early_mean_q1_3 (n=150) ===
+  bald        mean=3.4969  se=0.2480
+  oracle      mean=1.9801  se=0.2151
+  random      mean=4.0699  se=0.2927
+  voi         mean=3.4149  se=0.2544
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.0820  95% CI [-0.2781, +0.4403]  tie_rate=0.03
+    random-voi: +0.6550  95% CI [+0.0601, +1.2555]  tie_rate=0.00
+    voi-oracle: +1.4349  95% CI [+1.0295, +1.8621]  tie_rate=0.01
+
+=== metric: early_auc_q1_5 (n=150) ===
+  bald        mean=13.5351  se=0.9786
+  oracle      mean=6.8193  se=0.7819
+  random      mean=15.4535  se=1.0684
+  voi         mean=12.9231  se=0.9564
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.6121  95% CI [-0.8462, +2.0680]  tie_rate=0.00
+    random-voi: +2.5305  95% CI [+0.4185, +4.6346]  tie_rate=0.00
+    voi-oracle: +6.1037  95% CI [+4.5304, +7.7785]  tie_rate=0.00
+
+=== metric: final_regret (n=150) ===
+  bald        mean=2.8223  se=0.2614
+  oracle      mean=1.1625  se=0.1750
+  random      mean=3.4713  se=0.2929
+  voi         mean=2.5668  se=0.2383
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.2555  95% CI [-0.2934, +0.7853]  tie_rate=0.01
+    random-voi: +0.9045  95% CI [+0.3892, +1.4283]  tie_rate=0.01
+    voi-oracle: +1.4043  95% CI [+0.9563, +1.8604]  tie_rate=0.01
+
+=== metric: queries_to_threshold (n=150) ===
+  bald        mean=6.1200  se=0.3667
+  oracle      mean=4.1933  se=0.3421
+  random      mean=6.5800  se=0.3704
+  voi         mean=5.7400  se=0.3693
+  paired bootstrap diffs (A - B):
+    bald-voi: +0.3800  95% CI [-0.1733, +0.9533]  tie_rate=0.59
+    random-voi: +0.8400  95% CI [+0.2400, +1.4333]  tie_rate=0.52
+    voi-oracle: +1.5467  95% CI [+1.0000, +2.1000]  tie_rate=0.56
+  bald        reach_rate=0.61
+  oracle      reach_rate=0.76
+  random      reach_rate=0.53
+  voi         reach_rate=0.62

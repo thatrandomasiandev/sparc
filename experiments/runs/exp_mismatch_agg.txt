@@ -1,0 +1,28 @@
+
+=== mismatch=fatigue  n≈60 ===
+  bald              mean=3.8475  sd=3.3630
+  random            mean=3.9830  sd=3.8334
+  voi               mean=3.3451  sd=3.6355
+  bald−voi: +0.5024  [-0.5239, +1.5345]
+  random−voi: +0.6379  [-0.5812, +1.8793]
+
+=== mismatch=lex  n≈60 ===
+  bald              mean=2.8798  sd=2.9663
+  random            mean=2.7931  sd=2.9333
+  voi               mean=2.4526  sd=2.7285
+  bald−voi: +0.4272  [-0.2123, +1.1124]
+  random−voi: +0.3405  [-0.3484, +1.1372]
+
+=== mismatch=pl  n≈60 ===
+  bald              mean=2.9703  sd=2.8090
+  random            mean=3.5723  sd=3.4389
+  voi               mean=2.8757  sd=2.8823
+  bald−voi: +0.0946  [-0.8491, +1.0097]
+  random−voi: +0.6967  [-0.1353, +1.5395]
+
+=== mismatch=satisficing  n≈60 ===
+  bald              mean=3.2588  sd=3.2704
+  random            mean=3.4295  sd=3.6636
+  voi               mean=2.4822  sd=2.5460
+  bald−voi: +0.7765  [-0.0761, +1.6672]
+  random−voi: +0.9473  [-0.0021, +1.9457]

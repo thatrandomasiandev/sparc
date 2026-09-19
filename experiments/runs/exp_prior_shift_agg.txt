@@ -1,0 +1,7 @@
+
+=== all  n≈72 ===
+  matched           mean=3.0565  sd=3.2260
+  shifted           mean=5.2360  sd=4.7370
+  uniform           mean=4.6512  sd=4.5622
+  shifted−matched: +2.1795  [+1.0507, +3.3641]
+  uniform−matched: +1.5947  [+0.4078, +2.7822]

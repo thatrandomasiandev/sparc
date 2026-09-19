@@ -39,9 +39,8 @@ Thumbs.db
 credentials.json
 secrets/
 
-# Experiment artifacts (keep structure, ignore outputs)
-experiments/runs/**
-!experiments/runs/.gitkeep
+# Experiment artifacts: track runs so lab machines can pull results (I8).
+# Still ignore bulky regenerable caches under artifacts/.
 experiments/artifacts/**
 !experiments/artifacts/.gitkeep
 data/raw/**
@@ -56,7 +55,7 @@ data/external/**
 */.ipynb_checkpoints/
 
 # LaTeX build
-paper/build/
+# paper/build/  # tracked for lab sync
 paper/**/*.aux
 paper/**/*.bbl
 paper/**/*.blg
@@ -73,7 +72,7 @@ paper/**/*.snm
 paper/**/*.vrb
 paper/**/*.bcf
 paper/**/*.run.xml
-paper/main.pdf
+# paper/main.pdf  # if present, track for lab
 
 # Figures generated from experiments (keep sources)
 # paper/figures/generated/

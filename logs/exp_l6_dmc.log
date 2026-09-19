@@ -1,0 +1,19 @@
+{"seed": 0, "strategy": "random", "true_return": 37.96174988133162, "spearman_holdout": 0.30168855534709194, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 0, "strategy": "disagreement", "true_return": 36.874135258278095, "spearman_holdout": -0.28818011257035653, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 0, "strategy": "approx_voi", "true_return": 39.31650146971855, "spearman_holdout": 0.7131332082551596, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 1, "strategy": "random", "true_return": 37.78891163128083, "spearman_holdout": 0.5878048780487806, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 1, "strategy": "disagreement", "true_return": 39.25022046404466, "spearman_holdout": 0.326266416510319, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 1, "strategy": "approx_voi", "true_return": 38.69525707913593, "spearman_holdout": 0.7165103189493434, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 2, "strategy": "random", "true_return": 36.94669378405451, "spearman_holdout": -0.2660412757973734, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 2, "strategy": "disagreement", "true_return": 36.92448611519084, "spearman_holdout": -0.2692307692307693, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 2, "strategy": "approx_voi", "true_return": 35.721081008918624, "spearman_holdout": -0.2636022514071295, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 3, "strategy": "random", "true_return": 38.84903785820375, "spearman_holdout": 0.3283302063789869, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 3, "strategy": "disagreement", "true_return": 39.22333788966944, "spearman_holdout": 0.3619136960600376, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 3, "strategy": "approx_voi", "true_return": 36.75304279605083, "spearman_holdout": 0.1609756097560976, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 4, "strategy": "random", "true_return": 37.1359866984248, "spearman_holdout": -0.0727954971857411, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 4, "strategy": "disagreement", "true_return": 36.83046454299816, "spearman_holdout": -0.08217636022514073, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 4, "strategy": "approx_voi", "true_return": 39.32852201780449, "spearman_holdout": 0.33452157598499066, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 5, "strategy": "random", "true_return": 39.082948043040865, "spearman_holdout": 0.4043151969981239, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 5, "strategy": "disagreement", "true_return": 38.96656526881716, "spearman_holdout": 0.4793621013133209, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+{"seed": 5, "strategy": "approx_voi", "true_return": 37.42802738584266, "spearman_holdout": 0.04559099437148219, "n_queries": 20, "domain": "cartpole", "task": "balance"}
+EXIT:0

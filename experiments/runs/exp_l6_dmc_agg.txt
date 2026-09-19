@@ -1,0 +1,8 @@
+
+=== all  n≈6 ===
+  approx_voi        mean=37.8737  sd=1.4806
+  disagreement      mean=38.0115  sd=1.2478
+  random            mean=37.9609  sd=0.8702
+  disagreement−approx_voi: +0.1378  [-1.3537, +1.5735]
+  random−approx_voi: +0.0871  [-1.1973, +1.3055]
+  random−disagreement: -0.0506  [-0.7039, +0.5360]
