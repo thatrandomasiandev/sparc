@@ -1,0 +1,64 @@
+\section{Problem Formulation}
+\label{sec:problem}
+
+\subsection{Reward model}
+\label{sec:reward}
+A user is characterized by preference weights $w\in\mathbb{R}^d$ and consistency
+$b>0$.
+States carry features $\phi(s)\in\mathbb{R}^d$; the linear reward is
+$r(s)=w\cdot\phi(s)$.
+Under Bradley--Terry, answer probabilities depend on the product $b\|w\|$ only, so
+only that scale is identifiable: we pin $\|w\|=1$ and put all scale into $b$.
+A trajectory segment is summarized by discounted feature counts
+\begin{equation}
+  f=\sum_{t}\gamma^{t}\,\phi(s_{t}).
+\end{equation}
+Our tabular elicitation experiments use single-state segments (segment horizon
+$H{=}1$), so $f=\phi(s)$ there; we do not treat those runs as multi-step
+discounted occupancy counts.
+
+\subsection{Response model}
+\label{sec:response}
+Queries are binary comparisons of segments $A$ and $B$.
+With $\|w\|=1$,
+\begin{equation}
+  P(A\succ B)=\sigma\bigl(b\,w\cdot(f_A-f_B)\bigr),
+\end{equation}
+where $\sigma$ is the logistic sigmoid.\footnote{%
+Full rankings follow Plackett--Luce; Bradley--Terry is the $K{=}2$ special case.
+Main experiments use binary comparisons.}
+
+\subsection{Population setting}
+\label{sec:population}
+Previous users $u_1,\ldots,u_N$ each provide a small number of comparisons,
+inducing a \emph{population prior} over $(w,b)$.
+A new user arrives with unknown $(w,b)$.
+The robot asks $T$ preference queries, then acts by deploying a policy on the MDP.
+We maintain a particle belief drawn from that prior; acquisition and the
+select--update--decide loop are deferred to~\cref{sec:method}.
+
+\subsection{Objective}
+\label{sec:objective}
+Let $\rho$ denote the robot's belief (or the decision induced by it), and let
+$\pi(\rho)$ be the policy executed after deciding from $\rho$.
+Under the true reward $w$, policy regret is
+\begin{equation}
+  \mathrm{Reg}(\rho)=V^{*}_{w}-V^{\pi(\rho)}_{w},
+\end{equation}
+the gap between optimal value and the value of the executed policy
+(cf.\ regret-based elicitation for MDPs~\citep{regan2009regret}; we do not claim
+the criterion as new).
+Because the value of a fixed policy is linear in $w$ for tabular linear rewards,
+this regret is exact and cheap to evaluate in batch.
+We take \emph{low-budget} mean regret after $t\le 3$ queries as the
+\textbf{primary}, pre-registered evaluation target; final-query regret is
+\textbf{secondary}.
+No empiric comparisons are reported in this section.
+
+\subsection{Oracle}
+\label{sec:oracle}
+As an evaluation ceiling we include a true-regret \emph{oracle}: an acquisition
+that scores candidates using ground-truth regret under the known $(w,b)$.
+It is never a baseline to beat; it appears in every elicitation table
+(\cref{sec:experiments}) to bound the remaining gap under the same candidate pool
+and decision rule.

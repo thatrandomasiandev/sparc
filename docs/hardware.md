@@ -1,21 +1,30 @@
-# Hardware & human-study track — PARKED
+# Hardware & human-study track — ACTIVE
 
-**Status:** parked (2026-09-17). Josh does not currently operate the lab robots.
-Do **not** spend agent time on robot drivers, teleop, or lab booking unless Josh
-explicitly un-parks this.
+**Status:** un-parked (2026-09-18). Lab robot arm access is available; we will use it for
+trajectory comparison / human preference sessions alongside the sim track.
 
-Sim queue items 1–5 remain the path to RSS. Exact regret stays on the gridworld.
+Sim queue items remain the path to RSS numbers (exact regret stays on the gridworld).
+Hardware is a complementary validation track, not a substitute for powered sim claims.
 
 ---
 
-## What stays useful later
+## Current plan
 
-- `plr/hardware/` session logger + segment featurization (no robot SDK required)
-- Offline **video / pre-recorded clip** studies still possible without operating a robot
-- `QueryCosts` (I3) can be measured in a browser UI over clips if we ever need effort
-  normalization — still not required for the current binary-only sim experiments
+- **Platform:** robot arm (exact model / driver stack TBD — record once named)
+- **Role:** show trajectory pairs (or short segments), collect preference answers, log
+  sessions via `plr/hardware/`
+- **Keep:** offline video / pre-recorded clip studies as a fallback when live teleop
+  is unavailable
+- **Do not break:** I3 (`QueryCosts` raises on missing modality); exact-regret oracle
+  remains sim-only
 
-## If un-parked
+## Useful now
 
-Requires: named platform, someone who can run it (Josh trained, or lab mate), IRB/safety
-path with Prof. Bıyık. See git history for the previous pilot plan (N≈8–12, VOI vs BALD).
+- `plr/hardware/` session logger + segment featurization (no robot SDK required for
+  logging / offline clips)
+- Wire arm SDK / teleop only when the platform is named and a trained operator is set
+
+## Still required before live human data
+
+Named platform + operator (Josh trained, or lab mate), IRB/safety path with Prof. Bıyık.
+See git history for the previous pilot plan (N≈8–12, VOI vs BALD).

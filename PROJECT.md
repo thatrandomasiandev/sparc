@@ -486,12 +486,13 @@ Run in order. Each has a stated kill condition. Report it honestly when hit.
 6. **Non-stationary consistency.** Let `b` drift downward within a session. Exploratory,
    highest-risk, most novel. Do not let it block 1–5.
 
-### 8.1 Hardware / human pilot — PARKED
+### 8.1 Hardware / human pilot — ACTIVE
 
-Lab robots are available in principle, but the author does not currently operate them.
-**Do not pursue live-robot experiments for RSS** unless this section is explicitly
-un-parked. Code under `plr/hardware/` may support a future offline clip study; it is not
-on the critical path. Sim results are the paper.
+Robot arm access is available (2026-09-18). Use it for trajectory comparison / human
+preference sessions via `plr/hardware/`. **Sim remains the critical path for RSS
+numbers** (exact regret, powered pairwise claims); hardware is complementary
+validation. Name the platform and confirm operator + IRB/safety before collecting
+live human data.
 
 Details: `docs/hardware.md`.
 

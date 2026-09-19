@@ -149,6 +149,78 @@ def answer(
     return order.squeeze(0) if squeeze else order
 
 
+def answer_lexicographic(
+    phi: Tensor,
+    w: Tensor,
+    *,
+    generator: torch.Generator | None = None,
+) -> Tensor:
+    """Deterministic lex ranking: sort options by reward, break ties by feature index.
+
+    Ignores ``b`` entirely — a hard misspecification relative to Plackett–Luce.
+    """
+    from plr.likelihood import rewards
+
+    if phi.dim() != 2:
+        raise ValueError("answer_lexicographic expects phi shaped (K, d)")
+    r = rewards(phi, w)  # (K,)
+    # Stable sort: primary = -reward, secondary = option index
+    K = phi.shape[0]
+    keys = torch.stack([-r, torch.arange(K, dtype=r.dtype)], dim=-1)
+    # argsort on first column then second via lexsort-like: pack into single key
+    order = torch.argsort(keys[:, 0] * 1e6 + keys[:, 1], dim=0)
+    _ = generator  # API parity with answer(); deterministic
+    return order.long()
+
+
+def answer_satisficing(
+    phi: Tensor,
+    w: Tensor,
+    b: Tensor,
+    *,
+    margin: float = 0.05,
+    generator: torch.Generator | None = None,
+) -> Tensor:
+    """Satisficing: if top two rewards are within ``margin``, flip a coin; else PL.
+
+    Models a human who stops discriminating once options look close enough.
+    """
+    from plr.likelihood import rewards
+
+    if phi.dim() != 2:
+        raise ValueError("answer_satisficing expects phi shaped (K, d)")
+    r = rewards(phi, w)
+    top2 = torch.topk(r, k=min(2, r.numel())).values
+    if top2.numel() == 2 and float(top2[0] - top2[1]) < margin:
+        # Random permutation among near-tied options; keep rest by reward
+        order = torch.argsort(r, descending=True)
+        if generator is None:
+            flip = bool(torch.rand(()) < 0.5)
+        else:
+            flip = bool(torch.rand((), generator=generator) < 0.5)
+        if flip and order.numel() >= 2:
+            order = order.clone()
+            order[0], order[1] = order[1].clone(), order[0].clone()
+        return order.long()
+    return answer(phi, w, b, generator=generator)
+
+
+def answer_fatigue(
+    phi: Tensor,
+    w: Tensor,
+    b: Tensor,
+    *,
+    step: int,
+    decay: float = 0.85,
+    generator: torch.Generator | None = None,
+) -> Tensor:
+    """Non-stationary consistency: effective ``b`` decays as ``b * decay**step``."""
+    if decay <= 0 or decay > 1:
+        raise ValueError("decay must be in (0, 1]")
+    b_eff = b * (decay ** step)
+    return answer(phi, w, b_eff, generator=generator)
+
+
 def ranking_log_prob(phi: Tensor, w: Tensor, b: Tensor, order: Tensor) -> Tensor:
     """Likelihood of an observed ranking — thin wrapper for call sites."""
     return plackett_luce_logp(phi, w, b, order)

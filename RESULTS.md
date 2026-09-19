@@ -39,26 +39,50 @@ random−BALD CI contains 0. Prefer **final-regret** as primary going forward.
 **Primary:** final-query regret  
 **Secondary:** queries-to-threshold (with tie + censoring rates)
 
-### E-eq / E-eq-d — PRE-SPECIFIED 2026-09-17 (before launch)
+### E-eq / E-eq-d — 2026-09-18 — claims C-mot-1, C-mot-2
 
-- **Claims:** C-mot-1, C-mot-2
 - **Primary (amended before re-run):** `local_stable_rate` — P(π* unchanged under ε-perturbation);
   exact pairwise matches on dense random terrain are near-zero (straw man) and reported only as secondary
 - **Secondary:** pairwise policy-match rate / compression among random unit rewards
 - **Protocol:** 200 samples × dims {2,4,8,12,16} × seeds {0,1,2}, 6×6 terrain grid;
   local: 40 centers × 25 perturbations, ε=0.1
 - **Command:** `python experiment_eq.py --out experiments/runs/exp_eq.jsonl`
-- **Verdict:** _pending_
+- **Aggregate:** `experiments/runs/exp_eq_agg.txt`
+- **Figure:** `paper/figures/exp_eq_match_vs_d.{png,pdf}`
+- **Numbers:**
 
-### E-decouple — PRE-SPECIFIED 2026-09-17 (before launch)
+| d | local_stable | pairwise match | compression |
+|--:|-------------:|---------------:|------------:|
+| 2 | **0.457 ± 0.047** | 0.026 ± 0.004 | 0.672 |
+| 4 | 0.107 ± 0.010 | 0.0005 | 0.050 |
+| 8 | 0.047 ± 0.004 | 0.000 | 0.000 |
+| 12 | 0.022 ± 0.001 | 0.000 | 0.000 |
+| 16 | 0.014 ± 0.003 | 0.000 | 0.000 |
 
-- **Claims:** C-mech-1 (BALD−VOI gap grows with decoy fraction ρ)
+- **Verdict:** C-mot-1 **supported at low d** (compression 0.67 + local stability 0.46 at d=2; weak at d≥8).
+  C-mot-2 **killed as stated** — equivalence / local stability **falls** with `d`. Paper must say
+  “equivalence collapses with dimension,” not “irrelevance grows.”
+
+### E-decouple — 2026-09-18 — claim C-mech-1
+
 - **Primary:** paired BALD − VOI final-query regret as a function of ρ
-- **Prediction:** slope of mean gap vs ρ > 0
-- **Kill:** flat or decreasing slope
+- **Prediction:** slope of mean gap vs ρ > 0 · **Kill:** flat or decreasing
 - **Protocol:** ρ ∈ {0, 0.25, 0.5, 0.75}, 3 seeds × 8 users, 8 queries, d_total=8
 - **Command:** `python experiment_decouple.py --out experiments/runs/exp_decouple.jsonl`
-- **Verdict:** _pending_
+- **Aggregate:** `experiments/runs/exp_decouple_agg.txt`
+- **Figure:** `paper/figures/exp_decouple_gap_vs_rho.{png,pdf}`
+- **Paired BALD−VOI (n=24/ρ):**
+
+| ρ | BALD−VOI | 95% CI |
+|--:|---------:|--------|
+| 0.00 | +0.45 | [−0.88, +2.01] |
+| 0.25 | +0.13 | [−1.49, +1.99] |
+| 0.50 | **+1.48** | **[+0.05, +3.29]** |
+| 0.75 | +0.39 | [−0.56, +1.42] |
+
+- Mean gap vs ρ slope ≈ **+0.46** (prediction direction)
+- **Verdict:** **preliminary** — slope positive but non-monotone; only ρ=0.5 CI excludes 0.
+  Do not lock abstract language on C-mech-1 until powered.
 
 ### E3-power — POP-VOI evaluation (PRE-SPECIFIED 2026-09-17, before launch)
 
@@ -88,8 +112,20 @@ random−BALD CI contains 0. Prefer **final-regret** as primary going forward.
 - **Kill condition:** if the BALD−VOI CI on the primary metric contains zero, record C-main-2 as unsupported at 120 particles too.
 - **Command:**
   `python experiment_3.py --seeds 0 1 2 3 4 5 6 7 8 9 --d 8 --n-users 15 --n-particles 120 --strategies random bald voi oracle --out experiments/runs/exp3_power_d8_p120.jsonl`
-- **Output:** `experiments/runs/exp3_power_d8_p120.jsonl` (log alongside)
-- **Verdict:** _pending launch_
+- **Output:** `experiments/runs/exp3_power_d8_p120.jsonl` · agg `experiments/runs/exp3_power_d8_p120_agg.txt`
+- **Figures:** `paper/figures/exp3_power_d8_p120_*.{png,pdf}`
+- **Commit at aggregate:** `2b05c57`
+- **Verdict (n=150):**
+
+| Metric | random | BALD | VOI | oracle | bald−voi CI |
+|--------|-------:|-----:|----:|-------:|-------------|
+| **early_mean_q1_3 (primary)** | 4.070 | 3.497 | 3.415 | 1.980 | +0.08 [−0.28, +0.44] |
+| early_auc_q1_5 | 15.45 | 13.54 | 12.92 | 6.82 | +0.61 [−0.85, +2.07] |
+| final_regret | 3.471 | 2.822 | 2.567 | 1.163 | +0.26 [−0.29, +0.79] |
+
+  - random−VOI primary: **+0.655 [+0.060, +1.256]** (VOI < random)
+  - **Kill hit:** BALD−VOI CI contains 0 on the pre-registered primary → C-main-2 **unsupported at 120 particles too**
+  - Raising particles 48→120 does **not** recover VOI < BALD; final-regret point estimate improves slightly (2.68→2.57) but BALD gap stays NS
 
 ### Queue #1 run — VOI estimator ablation (2026-09-17)
 
@@ -126,3 +162,119 @@ close the true-regret oracle gap. Gap is likely posterior / decision-rule limite
 (particles may miss `w_true`; we still *act* with posterior mean). Next: queue #2
 (structural decoupling — tests whether VOI≻BALD when irrelevant dims exist) and/or
 change the **decision** rule (act with sampled/minimax policy), not just acquisition.
+
+### E-prior — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-2
+- **Primary:** final-query regret (VOI acquisition fixed)
+- **Priors:** population | uniform sphere | cheat (true user)
+- **Prediction:** uniform − population > 0 (CI excludes 0)
+- **Kill:** CI contains 0 or negative
+- **Protocol:** d=8, seeds 0–9, 12 users, 10 queries, 48 particles, 24 candidates
+- **Command:** `python experiment_prior.py --seeds 0 1 2 3 4 5 6 7 8 9 --out experiments/runs/exp_prior.jsonl`
+
+### E-act — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-4
+- **Primary:** final-query regret under VOI acquisition
+- **Rules:** mean | map | sample | softminimax (+ oracle/mean ceiling)
+- **Prediction:** mean − softminimax > 0 on final regret
+- **Kill:** no rule beats mean
+- **Protocol:** d=8, seeds 0–5, 12 users, 10 queries, 48 particles
+- **Command:** `python experiment_act.py --seeds 0 1 2 3 4 5 --out experiments/runs/exp_act.jsonl`
+
+### E-mismatch — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-10
+- **Primary:** paired bald−voi and random−voi final regret per mismatch ∈ {pl, lex, satisficing, fatigue}
+- **Kill:** VOI worse than random under any mismatch (random−voi CI entirely negative)
+- **Protocol:** d=8, seeds 0–5, 10 users, 10 queries, 48 particles
+- **Command:** `python experiment_mismatch.py --seeds 0 1 2 3 4 5 --out experiments/runs/exp_mismatch.jsonl`
+
+### E-neg — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-7
+- **Primary:** random − VOI final regret under orthogonal-label answers
+- **Kill:** VOI significantly beats random (claims decision-relevance while labels are orthogonal)
+- **Command:** `python experiment_neg.py --seeds 0 1 2 3 4 5 --out experiments/runs/exp_neg.jsonl`
+
+### E-prior-shift — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-3
+- **Primary:** shifted − matched final regret under VOI
+- **Prediction:** shifted > matched (CI excludes 0)
+- **Command:** `python experiment_prior_shift.py --seeds 0 1 2 3 4 5 --out experiments/runs/exp_prior_shift.jsonl`
+
+### E-decouple-power — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-mech-1 / path to C-main-2 on decoupled domain
+- **Primary:** paired BALD−VOI final regret vs ρ; slope of mean gap vs ρ
+- **Protocol:** ρ ∈ {0,0.25,0.5,0.75}, seeds 0–9, 12 users, 10 queries, 48 particles, 24 candidates
+- **Command:** `python experiment_decouple.py --seeds 0 1 2 3 4 5 6 7 8 9 --n-users 12 --n-queries 10 --n-particles 48 --n-candidates 24 --out experiments/runs/exp_decouple_power.jsonl`
+
+### Results — mechanism suite 2026-09-18 (commit `2b05c57`)
+
+**E-prior (C-mech-2) — SUPPORTED.** n=120. Final regret: pop 2.90, uniform 4.64, cheat ≈0.
+uniform−population **+1.74 [+0.88, +2.62]**. Artifact: `exp_prior.jsonl`.
+
+**E-prior-shift (C-mech-3) — SUPPORTED.** n=72. matched 3.06, shifted 5.24, uniform 4.65.
+shifted−matched **+2.18 [+1.05, +3.36]**. Artifact: `exp_prior_shift.jsonl`.
+
+**E-act (C-mech-4) — KILLED.** n=72, VOI acq. mean 2.80 < softminimax 3.10 (NS) ≪ sample 4.50
+(mean−sample **−1.70 [−2.87, −0.52]**). Oracle gap voi/mean−oracle **+2.03 [+1.24, +2.91]**.
+Artifact: `exp_act.jsonl`.
+
+**E-decouple-power (C-mech-1) — KILLED as stated.** n=120/ρ. No ρ with BALD−VOI CI excluding 0.
+Slope ≈+0.15. At ρ=0.75 only: random−voi **[+0.06, +1.11]**. Still no VOI≺BALD.
+Artifact: `exp_decouple_power.jsonl`.
+
+**E-mismatch (C-mech-10) — supported (no kill).** n=60/type. No mismatch with random−voi entirely
+negative. PL bald−voi still NS. Artifact: `exp_mismatch.jsonl`.
+
+**E-neg (C-mech-7) — SUPPORTED.** n=60. random−voi **+0.18 [−1.19, +1.62]** (CI∋0).
+Artifact: `exp_neg.jsonl`.
+
+### L6 — B-Pref / PEBBLE transfer (assessment 2026-09-18)
+
+- **Status:** not started as an experiment; interface stub in `plr/deep_bridge.py`.
+- **Why blocked:** exact VI VOI does not transfer to deep control; needs rollout-based
+  approx VOI + B-Pref/MuJoCo stack. That is a separate engineering milestone.
+- **Env note:** MuJoCo 3.12 + `dm_control` present; `gym` missing; B-Pref cloned to `/tmp/B-Pref`.
+- **Minimum bar when unblocked:** walker-walk (or one B-Pref task), swap acquisition only,
+  primary = return @ feedback budget; kill if approx-VOI ≱ disagreement.
+- **Do not claim L6 in the paper until that run exists.**
+
+### Maturity after mechanism suite
+
+| Level | Status |
+|------:|--------|
+| L2 | still here on VOI vs BALD |
+| L3 | **not reached** (C-main-2 NS everywhere tested) |
+| L4 | **partial** — prior necessary; decouple growth killed |
+| L5 | **not reached** — E-act killed |
+| L6 | **assessed + proxy run** — NS on cartpole (C-l6-1 kill); legacy B-Pref blocked |
+| L7 | parked |
+
+### E-L6-dmc — PRE-SPECIFIED 2026-09-18 (before launch)
+
+- **Claim:** C-l6-1 — approx_voi final CEM true-return **>** disagreement (paired)
+- **Why not stock B-Pref:** conda pin is Python 3.6 / PyTorch 1.4; unusable here.
+  This is the minimum credible continuous-control acquisition bake-off.
+- **Primary:** `true_return` (CEM on learned mean reward, evaluated under env reward)
+- **Secondary:** Spearman(pred, true) on holdout segments
+- **Strategies:** random | disagreement | approx_voi
+- **Protocol:** dm_control cartpole/balance; seeds 0–5; 20 queries; ensemble 5
+- **Kill:** disagreement−approx_voi CI on primary contains 0 or is negative
+- **Command:**
+  `python3 experiment_l6_dmc.py --seeds 0 1 2 3 4 5 --out experiments/runs/exp_l6_dmc.jsonl`
+
+### E-L6-dmc — RESULTS 2026-09-18
+
+- **Claim C-l6-1: NS / kill hit**
+- n=6; Primary true_return: approx_voi **37.87**, disagreement **38.01**, random **37.96**
+- disagreement−approx_voi: **+0.14 [−1.35, +1.57]**
+- Secondary spearman: approx_voi 0.28 vs disagreement 0.09 (NS)
+- Artifact: `experiments/runs/exp_l6_dmc.jsonl` · `exp_l6_dmc_agg.txt`
+- Continuous-control acquisition transfer is implemented and tested; **no supported L6 win**.
+  Do not claim field-facing VOI superiority over disagreement.
+

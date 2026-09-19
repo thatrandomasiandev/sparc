@@ -177,6 +177,54 @@ def posterior_mean_decision(weights: Tensor, particles_w: Tensor) -> Tensor:
     return unit(mean)
 
 
+def map_particle_decision(weights: Tensor, particles_w: Tensor) -> Tensor:
+    """Act optimally for the highest-weight particle (MAP under the discrete belief)."""
+    return unit(particles_w[int(weights.argmax().item())])
+
+
+def sample_particle_decision(
+    weights: Tensor,
+    particles_w: Tensor,
+    *,
+    generator: torch.Generator | None = None,
+) -> Tensor:
+    """Act optimally for one particle drawn from the posterior weights."""
+    idx = int(torch.multinomial(weights, 1, generator=generator).item())
+    return unit(particles_w[idx])
+
+
+def softminimax_decision(belief: "Belief") -> Tensor:
+    """Choose the particle policy with lowest expected posterior regret.
+
+    ``i* = argmin_i E_{j ~ β}[ V*_j - V^{π_i}_j ]``. Returns that particle's ``w``
+    so callers can keep using ``env.regret(w_true, decision_w)``.
+    """
+    table = belief.value_table()  # (P, P); table[i,j] = V^{π_i}(w_j)
+    regret = belief.V_star.unsqueeze(0) - table  # (P, P)
+    expected = regret @ belief.weights  # (P,)
+    return unit(belief.particles_w[int(expected.argmin().item())])
+
+
+def decide_w(
+    belief: "Belief",
+    rule: str = "mean",
+    *,
+    generator: torch.Generator | None = None,
+) -> Tensor:
+    """Point estimate / acting reward under a named decision rule (E-act)."""
+    if rule == "mean":
+        return posterior_mean_decision(belief.weights, belief.particles_w)
+    if rule == "map":
+        return map_particle_decision(belief.weights, belief.particles_w)
+    if rule == "sample":
+        return sample_particle_decision(
+            belief.weights, belief.particles_w, generator=generator
+        )
+    if rule in ("softminimax", "minimax"):
+        return softminimax_decision(belief)
+    raise ValueError(f"unknown decision rule {rule!r}")
+
+
 @dataclass
 class Belief:
     """Particle belief with cached per-particle optimal policies.

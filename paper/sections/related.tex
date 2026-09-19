@@ -1,15 +1,68 @@
 \section{Related Work}
 \label{sec:related}
 
-% Organize by theme, not by paper. End each theme by stating how this work differs.
-% Mirror rows from docs/literature/prior-art-matrix.md.
+\subsection{Decision-relevant elicitation}
+\citet{regan2009regret} develop regret-based reward elicitation for MDPs,
+selecting queries to reduce decision-relevant uncertainty about near-optimal
+policies rather than to identify a unique reward; only distinctions that change
+the optimal (or near-optimal) policy are worth eliciting.
+Their setting uses bound-style queries over reward structure, and related work
+extends approximate regret-based elicitation in MDPs~\citep{alizadeh2015approximate}.
+Model-Free Preference Elicitation~\citep{modelfree2024} likewise moves the
+elicitation target off raw parameters toward reward equivalence classes and
+recommendation-quality expected value of information, but in recommender
+settings without an MDP policy.
+The decision-relevant / regret-based \emph{goal} itself is not novel for this
+paper.
+We instantiate that goal for preference-based robotics: human trajectory-segment
+comparisons under Bradley--Terry likelihoods rather than bound queries; a
+learned population prior over previous users rather than searching unrestricted
+reward space; and a robotics setting with trajectories.
 
-\subsection{Theme A}
-TODO: Cluster prior methods that share an assumption or setting.
+\subsection{Active preference-based reward learning}
+Active preference-based reward learning chooses which trajectory comparison to
+ask next.
+Classical criteria shrink uncertainty over reward parameters: volume removal over
+reward weights~\citep{sadigh2017active}, batch volume
+removal~\citep{biyik2018batch}, and information gain that favors answerable
+questions~\citep{biyik2019asking}.
+Later methods use ensemble disagreement~\citep{hejna2023fewshot}, continuous
+query synthesis~\citep{zhou2026preferenceekf}, and effort-aware selective
+querying~\citep{muraleedharan2025sparq}.
+Closest within PbRL, \citet{ellis2024equivalence} acquire information about
+reward \emph{equivalence classes} for a \emph{single user}; our target is
+instead the regret of the \emph{executed policy} under a \emph{population prior}.
+Outside robotics, EPIG~\citep{epig2023} is the general active-learning version
+of the claim that parameter information can be the wrong target, measuring
+expected \emph{predictive} mutual information between the query label and future
+predictions---not policy regret or Regan-style value of information.
+We keep the segment-comparison interface of active PbRL, but score queries by
+expected reduction in policy regret under a population prior rather than by
+parameter volume, information gain, single-user equivalence acquisition, or
+predictive mutual information.
 
-\subsection{Theme B}
-TODO: Second cluster.
+\subsection{Population and pluralistic preference models}
+A parallel line models preference diversity as structure rather than noise.
+As shown by MaxMin-RLHF (Theorem~1)~\citep{chakraborty2024maxmin}, a single
+average reward can fail under diverse preferences---the ``average user'' is
+nobody.
+Distributional preference learning accounts for hidden
+context~\citep{siththaranjan2024dpl}; pluralistic and prototype-based models
+personalize reward predictors~\citep{chen2025pal}; and clustering methods learn
+representative rewards from diverse preferences~\citep{kim2026prec}.
+Closest architecturally, variational preference learning encodes annotations
+into a user latent with a latent-conditioned reward~\citep{poddar2024vpl}, but
+uses fixed survey queries and leaves active selection as future work.
+These methods primarily use population structure to \emph{represent} or align to
+users.
+We use the population to \emph{choose queries}, not only to model users.
 
-\subsection{Positioning}
-TODO: One short paragraph that places this paper relative to Themes A/B and
-states the unoccupied cell this work claims.
+\subsection{Active personalization elsewhere}
+Outside robot policy learning, comparison-based active preference learning
+personalizes multi-dimensional models in language settings~\citep{oh2025ample},
+and active utility-based pairwise sampling improves personalized
+recommendations~\citep{boroomand2025utility}.
+Neither setting has a downstream policy or a regret target.
+Across these neighbors, the cell we claim is an instantiation---policy-regret
+scoring of human trajectory comparisons under a population prior---not a new
+elicitation paradigm.

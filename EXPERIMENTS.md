@@ -15,15 +15,18 @@ Standing order: be creative, thorough, and back every manuscript number with an 
 | E1-strat | Difficulty-stratified rescue? | 1 | planned |
 | E2 | Is b recoverable / difficulty? | 1 | done (+ caveat) |
 | E3-ablate | Particle / lookahead VOI? | 1 | done — partial kill |
-| E3-power | VOI vs BALD vs random (powered) | 1 | **needed** (abstract blocked) |
-| E-eq / E-eq-d | Policy equivalence stats | 2 | **next cheap** |
-| E-decouple | Irrelevant features ⇒ VOI≻BALD? | 2 | queue #2 flagship |
-| E-prior / E-prior-shift | Population prior necessary? | 2 | planned |
-| E-act | Better *action* closes oracle gap? | 2 | planned |
-| E-calib / E-cover / E-neg | Calibration, coverage, neg. control | 2 | planned |
+| E3-power | VOI vs BALD vs random (powered) | 1 | done — VOI≺BALD NS |
+| E-eq / E-eq-d | Policy equivalence stats | 2 | done — rewrite C-mot-2 |
+| E-decouple | Irrelevant features ⇒ VOI≻BALD? | 2 | **killed** at powered n (C-mech-1) |
+| E-prior / E-prior-shift | Population prior necessary? | 2 | **supported** (C-mech-2/3) |
+| E-act | Better *action* closes oracle gap? | 2 | **killed** (C-mech-4) |
+| E-mismatch | Non-PL users | 2 | **supported** (no kill) |
+| E-neg | Orthogonal-label control | 2 | **supported** |
+| E-calib / E-cover | Calibration, coverage | 2 | planned |
 | E-budget | Full regret vs t curves | 2 | planned |
 | E-diag-bald | High BALD, low decision value | 2 | planned |
-| E-ternary / E-mismatch | K=3; non-PL users | 2 | planned |
+| E-ternary | K=3 | 2 | planned |
+| L6-BPref | PEBBLE/B-Pref transfer | 3 | **proxy run NS** (`exp_l6_dmc`); stock B-Pref py3.6 blocked |
 
 Hardware: **PARKED** (`docs/hardware.md`).
 

@@ -5,6 +5,15 @@
   year    = {2009}
 }
 
+@inproceedings{alizadeh2015approximate,
+  title     = {Approximate Regret Based Elicitation in {Markov} Decision Process},
+  author    = {Alizadeh, Pegah and Chevaleyre, Yann and Zucker, Jean-Daniel},
+  booktitle = {IEEE RIVF International Conference on Computing and Communication Technologies},
+  pages     = {47--52},
+  year      = {2015},
+  doi       = {10.1109/RIVF.2015.7049873}
+}
+
 @inproceedings{christiano2017deep,
   title     = {Deep Reinforcement Learning from Human Preferences},
   author    = {Christiano, Paul F and Leike, Jan and Brown, Tom and Martic, Miljan and Legg, Shane and Amodei, Dario},
@@ -19,11 +28,48 @@
   year      = {2017}
 }
 
+@inproceedings{biyik2018batch,
+  title     = {Batch Active Preference-Based Learning of Reward Functions},
+  author    = {B{\i}y{\i}k, Erdem and Sadigh, Dorsa},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  pages     = {519--528},
+  year      = {2018}
+}
+
 @inproceedings{biyik2019asking,
   title     = {Asking Easy Questions: A User-Friendly Approach to Active Reward Learning},
   author    = {B{\i}y{\i}k, Erdem and Palan, Malayandi and Landolfi, Nicholas C. and Losey, Dylan P. and Sadigh, Dorsa},
   booktitle = {Conference on Robot Learning (CoRL)},
   year      = {2019}
+}
+
+@inproceedings{ellis2024equivalence,
+  title     = {A Generalized Acquisition Function for Preference-based Reward Learning},
+  author    = {Ellis, Evan and Ghosal, Gaurav R. and Russell, Stuart J. and Dragan, Anca and B{\i}y{\i}k, Erdem},
+  year      = {2024},
+  note      = {arXiv:2403.06003; reward equivalence-class acquisition}
+}
+
+@inproceedings{hejna2023fewshot,
+  title     = {Few-Shot Preference Learning for Human-in-the-Loop {RL}},
+  author    = {Hejna, Joey III and Sadigh, Dorsa},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2023},
+  note      = {CoRL 2022 proceedings; ensemble disagreement queries}
+}
+
+@inproceedings{zhou2026preferenceekf,
+  title     = {Subspace Inference Enables Efficient Active Reward Learning from Preferences},
+  author    = {Zhou, Yutai and B{\i}y{\i}k, Erdem},
+  year      = {2026},
+  note      = {arXiv:2609.04066; PreferenceEKF query synthesis}
+}
+
+@inproceedings{muraleedharan2025sparq,
+  title     = {Selective Progress-Aware Querying for Human-in-the-Loop Reinforcement Learning},
+  author    = {Muraleedharan, Anujith and H, Anamika J},
+  year      = {2025},
+  note      = {arXiv:2509.20541; SPARQ}
 }
 
 @inproceedings{houlsby2011bald,
@@ -43,9 +89,11 @@
 
 @inproceedings{modelfree2024,
   title     = {Model-Free Preference Elicitation},
+  author    = {Martin, Carlos and Boutilier, Craig and Meshi, Ofer and Sandholm, Tuomas},
+  booktitle = {Proceedings of the Thirty-Third International Joint Conference on Artificial Intelligence (IJCAI)},
+  pages     = {3493--3503},
   year      = {2024},
-  booktitle = {IJCAI},
-  note      = {TODO: fill exact author list from the PDF before submission}
+  doi       = {10.24963/ijcai.2024/387}
 }
 
 @inproceedings{lee2021pebble,
@@ -53,4 +101,57 @@
   author    = {Lee, Kimin and Smith, Laura and Abbeel, Pieter},
   booktitle = {ICML},
   year      = {2021}
+}
+
+@inproceedings{chakraborty2024maxmin,
+  title     = {{MaxMin-RLHF}: Alignment with Diverse Human Preferences},
+  author    = {Chakraborty, Souradip and Qiu, Jiahao and Yuan, Hui and Koppel, Alec and Manocha, Dinesh and Huang, Furong and Bedi, Amrit and Wang, Mengdi},
+  booktitle = {International Conference on Machine Learning (ICML)},
+  pages     = {6116--6135},
+  year      = {2024}
+}
+
+@inproceedings{siththaranjan2024dpl,
+  title     = {Distributional Preference Learning: Understanding and Accounting for Hidden Context in {RLHF}},
+  author    = {Siththaranjan, Anand and Laidlaw, Cassidy and Hadfield-Menell, Dylan},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2024}
+}
+
+@inproceedings{chen2025pal,
+  title     = {{PAL}: Sample-Efficient Personalized Reward Modeling for Pluralistic Alignment},
+  author    = {Chen, Daiwei and Chen, Yi and Rege, Aniket and Wang, Zhi and Vinayak, Ramya Korlakai},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  note      = {arXiv:2406.08469}
+}
+
+@inproceedings{poddar2024vpl,
+  title     = {Personalizing Reinforcement Learning from Human Feedback with Variational Preference Learning},
+  author    = {Poddar, Sriyash and Wan, Yanming and Ivison, Hamish and Gupta, Abhishek and Jaques, Natasha},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2024}
+}
+
+@inproceedings{kim2026prec,
+  title     = {Deployable Human Preference Alignment in Robotics: Learning Representative Rewards from Diverse Human Preferences},
+  author    = {Kim, Taehyung and Lee, Gwangmo and Chang, Minjun and Lim, Sunghyun and Choi, Jongeun},
+  year      = {2026},
+  note      = {arXiv:2607.12466; PREC / Preference-based REward Clustering}
+}
+
+@inproceedings{oh2025ample,
+  title     = {Comparison-based Active Preference Learning for Multi-dimensional Personalization},
+  author    = {Oh, Minhyeon and Lee, Seungjoon and Ok, Jungseul},
+  booktitle = {Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+  pages     = {33145--33166},
+  year      = {2025},
+  note      = {AMPLe}
+}
+
+@inproceedings{boroomand2025utility,
+  title     = {Personalized Recommendations via Active Utility-based Pairwise Sampling},
+  author    = {Boroomand, Bahar and Wright, James R.},
+  year      = {2025},
+  note      = {arXiv:2508.14911}
 }

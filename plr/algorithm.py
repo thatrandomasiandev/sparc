@@ -31,8 +31,8 @@ from plr.likelihood import plackett_luce_logp, unit
 from plr.mdp import (
     Belief,
     Gridworld,
+    decide_w,
     oracle_true_regret_score,
-    posterior_mean_decision,
     voi_score,
 )
 
@@ -78,6 +78,9 @@ class POPVOI:
         Default ``VOI`` — the decision-relevant score.
     loss_mode:
         ``particle`` (default) or ``mean`` — matches ``voi_score`` / Belief.loss.
+    decision_rule:
+        How to convert the posterior into an acting reward: ``mean`` (default),
+        ``map``, ``sample``, or ``softminimax`` (E-act).
     seed:
         RNG for RANDOM acquisition and any stochastic tie-breaking.
     """
@@ -88,6 +91,7 @@ class POPVOI:
     candidates: Tensor
     acquisition: Acquisition = Acquisition.VOI
     loss_mode: str = "particle"
+    decision_rule: str = "mean"
     seed: int = 0
     belief: Belief = field(init=False)
     log: list[StepLog] = field(default_factory=list)
@@ -104,6 +108,8 @@ class POPVOI:
             raise ValueError("candidate feature dim must match particles")
         if self.loss_mode not in ("particle", "mean"):
             raise ValueError("loss_mode must be 'particle' or 'mean'")
+        if self.decision_rule not in ("mean", "map", "sample", "softminimax", "minimax"):
+            raise ValueError(f"unknown decision_rule {self.decision_rule!r}")
 
         self.belief = Belief.create(self.env, self.particles_w, self.particles_b)
         self._generator = torch.Generator()
@@ -198,8 +204,8 @@ class POPVOI:
         return self.belief
 
     def decide_w(self) -> Tensor:
-        """Point estimate used for acting: unit posterior-mean reward direction."""
-        return posterior_mean_decision(self.belief.weights, self.belief.particles_w)
+        """Point estimate used for acting under ``decision_rule`` (default: mean)."""
+        return decide_w(self.belief, self.decision_rule, generator=self._generator)
 
     def decide_policy(self) -> Tensor:
         """Optimal policy for ``decide_w()`` on ``env``."""

@@ -1,22 +1,47 @@
 \section{Introduction}
 \label{sec:introduction}
 
-Robots that learn from pairwise preference feedback typically choose the next query by
-maximizing information about the user's reward parameters
+Robots learn reward models from human comparisons of trajectory segments.
+Because each comparison costs scarce human attention, query selection---which pair to
+ask next---is the practical budget, not compute.
+The dominant practice maximizes information about reward parameters
 \citep{sadigh2017active,biyik2019asking}.
-A large fraction of that uncertainty never changes what the robot should \emph{do}:
-many rewards induce the same optimal policy.
-We therefore select queries by expected reduction in \emph{policy regret}, following the
-decision-theoretic line of \citet{regan2009regret} and the recommendation-quality VOI of
-Model-Free Preference Elicitation~\citep{modelfree2024}, instantiated here for
-trajectory-segment comparisons under a \emph{population prior} over previous users.
+
+That target is misaligned with how a robot acts.
+Information-gain and BALD criteria~\citep{houlsby2011bald} shrink uncertainty over
+parameters; the robot then deploys a \emph{policy} induced by its reward estimate.
+Prior work already argued that optimizing parameter uncertainty can be wasteful:
+Model-Free Preference Elicitation~\citep{modelfree2024} moved the elicitation target
+from parameters to reward equivalence classes and recommendation-quality value of
+information.
+Independently, \citet{regan2009regret} developed regret-based reward elicitation for
+MDPs, selecting queries to reduce decision-relevant uncertainty about near-optimal
+policies.
+We instantiate that decision-theoretic goal for preference-based robotics: score
+queries by expected reduction in \emph{policy regret} under a \emph{population particle
+prior} over previous users, rather than searching unrestricted reward space.
+On our domain, nearby unit rewards can leave the optimal policy unchanged in a local
+neighborhood at low feature dimension; that local stability collapses as dimension
+grows---motivating a regret target, not a claim that irrelevance expands with~$d$.
+
+We study binary segment comparisons under Bradley--Terry likelihoods and linear state
+rewards. For a fixed policy, value is linear in the weight vector, so batch policy
+regret is exact and cheap.
+The loop is select (VOI on regret), update the posterior, then decide (act).
+We evaluate against random sampling, BALD, and a true-regret oracle; we do not claim a
+new elicitation paradigm, only this instantiation.
 
 \subsection{Contributions}
 \begin{enumerate}
   \item Formalize preference-query acquisition as expected policy-regret reduction under a
-        particle prior drawn from a user population (not unrestricted reward space).
-  \item Empirically compare random, BALD, VOI, and an oracle ceiling on a gridworld with
-        exact regret; report paired bootstrap intervals and the oracle gap.
-  \item Document negative and explanatory results on consistency identification
-        (factored latent; difficulty regimes) so claims stay within what the evidence supports.
+        population particle prior, using linearity of policy value to compute exact batch
+        regret for fixed policies.
+  \item Pre-register a paired comparison of random, BALD, particle VOI, and a true-regret
+        oracle under exact policy regret, reporting interval estimates and the remaining
+        oracle gap rather than a bake-off win.
+  \item Report diagnostics that bound interpretation where evidence exists: a
+        particle-coverage diagnostic for residual regret (no calibrated threshold
+        claimed here), policy-equivalence measurement versus dimension, and
+        consistency-identification negatives (factored consistency latents and
+        difficulty regimes).
 \end{enumerate}

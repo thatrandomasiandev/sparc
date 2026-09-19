@@ -98,7 +98,7 @@ numbers → only then edit `paper/`.
 6. **E-calib / E-cover / E-neg** — reviewer-proofing
 7. E1-strat, E-ternary, E-mismatch — secondary
 
-**Hardware:** parked (`docs/hardware.md`).
+**Hardware:** active — robot arm available; sim still owns RSS numbers (`docs/hardware.md`).
 
 ---
 
